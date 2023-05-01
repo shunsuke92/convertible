@@ -1,0 +1,23 @@
+html {
+  font-size: var(--font-size-sm);
+}
+
+body {
+  background-color: var(--color1);
+  color: var(--black);
+  font-weight: 300;
+  font-size: var(--font-size-sm);
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+h3 {
+  font-size: var(--font-size-md);
+}
+
+h2 {
+  font-size: var(--font-size-md);
+}
+
+h1 {
+  font-size: var(--font-size-md);
+}

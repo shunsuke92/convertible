@@ -1,6 +1,7 @@
-# Nuxt 3 Minimal Starter
+# Convertible
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Convertible is an image conversion site.
+Published [here](https://convertible92.com).
 
 ## Setup
 
