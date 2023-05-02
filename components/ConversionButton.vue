@@ -1,5 +1,5 @@
 <template>
-  <Button type="outline" :disabled="getDisabled" @click="handleClick" :lot="`wkifs${fileIndex}`">{{
+  <Button type="outline" :disabled="getDisabled" @click="handleClick">{{
     !getCancelButton ? '変換' : 'キャンセル'
   }}</Button>
 </template>

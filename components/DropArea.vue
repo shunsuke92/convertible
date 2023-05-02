@@ -153,6 +153,9 @@
     @include hover() {
       background-color: var(--color6);
     }
+    &:active {
+      background-color: var(--color13);
+    }
   }
 
   .upload {

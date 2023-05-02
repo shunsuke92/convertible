@@ -1,22 +1,20 @@
 <template>
-  <Ripple :lot="lot" :color="getColor">
-    <button
-      class="button"
-      :class="getClass"
-      :style="getStyle"
-      :disabled="getDisabled"
-      @click="click"
-    >
-      <slot></slot>
-    </button>
-  </Ripple>
+  <button
+    class="button ripple"
+    :class="getClass"
+    :style="getStyle"
+    :disabled="getDisabled"
+    @click="click"
+    @mousedown="handleMousedown"
+  >
+    <slot></slot>
+  </button>
 </template>
 
 <script setup lang="ts">
   import type { CSSProperties } from 'vue';
 
   interface Props {
-    lot: string;
     fontSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | '3xl' | '4xl';
     width?: `${number}px`;
     height?: `${number}px`;
@@ -46,6 +44,12 @@
     paddingRight: undefined,
   });
 
+  const { createRipple } = useCreateRipple();
+
+  const handleMousedown = (event: MouseEvent) => {
+    createRipple(event, props.type === 'fill' ? '#ffffff55' : '#30a13f33');
+  };
+
   const getClass = computed(() => {
     return {
       fill: props.type === 'fill',
@@ -61,8 +65,8 @@
 
   const getStyle = computed((): CSSProperties => {
     return {
-      width: props.width ?? props.width ?? '100%',
-      height: props.height ?? props.width ?? '100%',
+      width: props.width,
+      height: props.height,
       paddingTop: props.padding ?? props.paddingTop ?? '5px',
       paddingBottom: props.padding ?? props.paddingBottom ?? '5px',
       paddingLeft: props.padding ?? props.paddingLeft ?? '20px',
@@ -72,10 +76,6 @@
 
   const getDisabled = computed(() => {
     return props.disabled;
-  });
-
-  const getColor = computed(() => {
-    return props.type === 'fill' ? '#ffffff55' : '#30a13f33';
   });
 
   const emit = defineEmits<{ (e: 'click', value: void): void }>();
@@ -138,6 +138,20 @@
     }
     &.fontXl {
       font-size: var(--font-size-xl);
+    }
+  }
+
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+</style>
+
+<style>
+  @keyframes ripple {
+    to {
+      opacity: 0;
+      transform: scale(1);
     }
   }
 </style>

@@ -1,12 +1,5 @@
 <template>
-  <Button
-    width="160px"
-    height="40px"
-    type="fill"
-    :disabled="getDisabled"
-    @click="download('all')"
-    lot="ugeyy"
-  >
+  <Button width="160px" height="40px" type="fill" :disabled="getDisabled" @click="download('all')">
     一括ダウンロード
   </Button>
 </template>

@@ -1,13 +1,13 @@
 <template>
   <div class="footer">
     <div class="clear-button">
-      <Button font-size="xs" type="outline" color="#aaaaaa" @click="clearSetting" lot="wbfug"
+      <Button font-size="xs" type="outline" color="#aaaaaa" @click="clearSetting"
         >初期値に戻す</Button
       >
     </div>
     <Stack12 style="position: absolute; right: 18px; bottom: 14px">
-      <Button type="outline" @click="handleClick" lot="jguji">キャンセル</Button>
-      <Button type="fill" :disabled="getDisabled" @click="decision" lot="bkudh">保存</Button>
+      <Button type="outline" @click="handleClick">キャンセル</Button>
+      <Button type="fill" :disabled="getDisabled" @click="decision">保存</Button>
     </Stack12>
   </div>
 </template>

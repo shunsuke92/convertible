@@ -1,10 +1,5 @@
 <template>
-  <Button
-    type="fill"
-    :disabled="getDisabled(fileIndex)"
-    @click="download('single', fileIndex)"
-    :lot="`nwnpc${fileIndex}`"
-  >
+  <Button type="fill" :disabled="getDisabled(fileIndex)" @click="download('single', fileIndex)">
     ダウンロード
   </Button>
 </template>

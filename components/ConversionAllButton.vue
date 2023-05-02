@@ -5,7 +5,6 @@
     type="outline"
     :disabled="getDisabledAllSubmitButton"
     @click="handleClick"
-    lot="undnx"
   >
     {{ !getCancelButton ? '一括変換' : 'キャンセル' }}
   </Button>

@@ -12,7 +12,7 @@
       </div>
       <div class="footer">
         <div class="button-outer">
-          <Button type="outline" @click="closeImageList" lot="hbjpr">閉じる</Button>
+          <Button type="outline" @click="closeImageList">閉じる</Button>
         </div>
       </div>
     </div>
