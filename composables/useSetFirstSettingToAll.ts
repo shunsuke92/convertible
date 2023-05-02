@@ -16,7 +16,7 @@ export const useSetFirstSettingToAll = () => {
       const setData: InputFiles[] = [];
       for (let j = 0; j < settingNum; j++) {
         const firstFile = inputFiles.value[0][j];
-        const targetFile = inputFiles.value[i][j];
+        const targetFile = inputFiles.value[i][0];
         const isResize = !(
           firstFile.originalWidth === firstFile.settingWidth &&
           firstFile.originalHeight === firstFile.settingHeight
