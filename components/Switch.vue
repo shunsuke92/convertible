@@ -58,10 +58,10 @@
     if (props.top || props.bottom || props.left || props.right) {
       return {
         position: 'absolute',
-        top: props.top ? props.top : '',
-        bottom: props.bottom ? props.bottom : '',
-        left: props.left ? props.left : '',
-        right: props.right ? props.right : '',
+        top: props.top,
+        bottom: props.bottom,
+        left: props.left,
+        right: props.right,
       };
     } else {
       return undefined;

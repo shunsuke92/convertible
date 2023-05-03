@@ -47,7 +47,7 @@
   const { createRipple } = useCreateRipple();
 
   const handleMousedown = (event: MouseEvent) => {
-    createRipple(event, props.type === 'fill' ? '#ffffff55' : '#30a13f33');
+    createRipple(event, props.type === 'fill' ? '#ffffff55' : `${props.color}33`);
   };
 
   const getClass = computed(() => {
@@ -113,6 +113,7 @@
 
       @include hover() {
         border: 1px v-bind(hoverColor) solid;
+        color: v-bind(hoverColor);
         font-weight: 500;
       }
 

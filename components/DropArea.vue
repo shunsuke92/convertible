@@ -1,5 +1,8 @@
 <template>
-  <div
+  <Stack16
+    direction="column"
+    alignItems="center"
+    justifyContent="center"
     class="drop-area"
     :class="getClass"
     @dragenter="dragEnter"
@@ -7,7 +10,13 @@
     @dragover.prevent
     @drop.prevent="handleDrop"
   >
-    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 308.47 370.52" fill="#231815">
+    <svg
+      class="icon"
+      :class="{ hide: isUploaded }"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 308.47 370.52"
+      fill="#231815"
+    >
       <path
         d="M308.47,101.7c-.02-.52-.07-1.05-.16-1.56v-9.22c0-3.37-1.34-6.61-3.72-9L226.39,3.73c-2.39-2.38-5.62-3.73-8.99-3.73H29.57C13.25,.02,.02,13.25,0,29.57V340.95c.02,16.32,13.25,29.55,29.57,29.57h249.17c16.32-.02,29.55-13.25,29.57-29.57V103.26c.09-.52,.14-1.04,.16-1.57m-32.83-12.72h-61.09V27.88l61.09,61.09Zm3.1,256.1H29.57c-2.27,0-4.11-1.84-4.11-4.11V29.57c0-2.27,1.84-4.11,4.11-4.11H189.09V101.68c0,7.03,5.69,12.73,12.72,12.73h81.04v226.54c0,2.27-1.84,4.11-4.11,4.11"
       />
@@ -15,13 +24,10 @@
         d="M197.43,201.89h-38.39v-38.39c0-4.54-3.68-8.23-8.23-8.23s-8.23,3.68-8.23,8.23v38.39h-38.39c-4.54,0-8.23,3.68-8.23,8.23s3.68,8.23,8.23,8.23h38.39v38.39c0,4.54,3.68,8.23,8.23,8.23s8.23-3.68,8.23-8.23v-38.39h38.39c4.54,0,8.23-3.68,8.23-8.23s-3.68-8.23-8.23-8.23Z"
       />
     </svg>
-    <div class="text-outer">
-      <label for="upload" class="upload-outer">ここをクリック</label>
-      <p class="text">またはドラッグ&ドロップでファイルを追加できます。</p>
-    </div>
-    <p class="text margin-top-20">
-      対応ファイル：JPEG / PNG / WebP / GIF / TIFF / AVIF / HEIF / BMP
-    </p>
+    <Stack0 direction="column" alignItems="center">
+      <p class="text">アップロードする画像ファイルをドラッグ＆ドロップします。</p>
+      <p class="sub-text">対応ファイル：JPEG / PNG / GIF / WebP / AVIF</p>
+    </Stack0>
     <input
       id="upload"
       class="upload"
@@ -30,7 +36,8 @@
       multiple
       @change="handleChange"
     />
-  </div>
+    <label for="upload" class="upload-label">ファイルを選択</label>
+  </Stack16>
 </template>
 
 <script setup lang="ts">
@@ -92,8 +99,12 @@
     createInputFile(files);
   };
 
+  const isUploaded = computed(() => {
+    return inputFiles.value.length > 0;
+  });
+
   const getClass = computed(() => {
-    return { enter: isEnter.value, small: inputFiles.value.length > 0 };
+    return { enter: isEnter.value, small: isUploaded.value };
   });
 </script>
 
@@ -110,10 +121,16 @@
     border: 3px var(--color5) solid;
     border-radius: 8px;
     background-color: var(--color3);
-    transition: padding 0.5s;
+    transition: padding 0.5s, background-color 0.2s;
     .icon {
-      width: 50px;
+      height: 64px;
+      transition: height 0.5s, opacity 0.2s, margin 0.5s;
       fill: var(--color5);
+      &.hide {
+        margin-bottom: 0;
+        height: 0;
+        opacity: 0;
+      }
     }
     .text-outer {
       display: flex;
@@ -122,28 +139,32 @@
       margin-top: 10px;
     }
     .text {
-      color: var(--gray9);
+      color: var(--gray10);
       font-weight: 400;
       font-size: var(--font-size-lg);
       pointer-events: none;
-      &.margin-top-20 {
-        margin-top: 20px;
-      }
+    }
+
+    .sub-text {
+      color: var(--gray10);
+      font-weight: 300;
+      font-size: var(--font-size-sm);
+      pointer-events: none;
     }
     &.enter {
       background-color: var(--color4);
     }
     &.small {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 30px;
+      padding-bottom: 30px;
     }
   }
 
-  .upload-outer {
+  .upload-label {
     display: inline;
     margin-right: 6px;
     padding: 6px 12px;
-    border-radius: 20px;
+    border-radius: 4px;
     background-color: var(--color5);
     color: var(--white);
     font-size: var(--font-size-md);

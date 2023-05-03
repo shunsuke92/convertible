@@ -7,7 +7,7 @@
         top="25px"
         left="20px"
         @click="clickDownloadByFolder"
-        >複数ファイルはフォルダで保存</Switch
+        >Zipでダウンロード</Switch
       >
       <div v-if="getProgressDisplay" class="progress-bar">
         <p

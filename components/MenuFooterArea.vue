@@ -1,7 +1,12 @@
 <template>
   <div class="footer">
     <div class="clear-button">
-      <Button font-size="xs" type="outline" color="#aaaaaa" @click="clearSetting"
+      <Button
+        font-size="xs"
+        type="outline"
+        color="#aaaaaa"
+        hoverColor="#777777"
+        @click="clearSetting"
         >初期値に戻す</Button
       >
     </div>
@@ -48,8 +53,8 @@
 
   const clearSetting = () => {
     const initialData: UpdataMenuSetttingValue = {
-      format: 'jpeg',
-      formatLevel: 'lossless',
+      format: menuTargetFile().originalFormat,
+      formatLevel: 'middle',
       width: menuTargetFile().originalWidth,
       height: menuTargetFile().originalHeight,
       fit: 'cover',

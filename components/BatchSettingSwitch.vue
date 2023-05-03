@@ -2,13 +2,13 @@
   <Switch
     :on="isBatchSetting"
     text-position="left"
-    top="12px"
-    right="16px"
+    top="20px"
+    right="32px"
     :disabled="isConverting"
     @click="handleClick"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
-    >すべての画像に同じ設定を適応</Switch
+    >一括設定</Switch
   >
 </template>
 
