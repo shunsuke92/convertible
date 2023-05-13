@@ -1,5 +1,11 @@
 <template>
-  <Button width="160px" height="40px" type="fill" :disabled="getDisabled" @click="download('all')">
+  <Button
+    :width="windowWidth >= 768 ? '160px' : windowWidth >= 576 ? '277px' : '172px'"
+    height="40px"
+    type="fill"
+    :disabled="getDisabled"
+    @click="download('all')"
+  >
     一括ダウンロード
   </Button>
 </template>
@@ -9,6 +15,7 @@
   const { isConvertingAll } = useIsConvertingAll();
   const { inputFiles } = useInputFiles();
   const { download } = useDownload();
+  const { windowWidth } = useWindowWidth();
 
   const getDisabled = computed(() => {
     const fileNum = inputFiles.value.length;

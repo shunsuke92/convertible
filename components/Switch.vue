@@ -1,7 +1,11 @@
 <template>
   <div class="switch" :style="getStyle" :class="getClass">
-    <p v-if="textPosition === 'left'" class="text left"><slot></slot></p>
+    <label v-if="textPosition === 'left'" for="switch-button" class="text left"
+      ><slot></slot
+    ></label>
     <button
+      id="switch-button"
+      type="button"
       class="button"
       :class="{ on: on }"
       aria-label="switch"
@@ -10,7 +14,9 @@
       @mouseenter="mouseenter"
       @mouseleave="mouseleave"
     ></button>
-    <p v-if="textPosition === 'right'" class="text right"><slot></slot></p>
+    <label v-if="textPosition === 'right'" for="switch-button" class="text right"
+      ><slot></slot
+    ></label>
   </div>
 </template>
 
@@ -98,17 +104,19 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    white-space: nowrap;
   }
 
   .text {
     color: var(--gray8);
     font-weight: 400;
     font-size: var(--font-size-sm);
+    cursor: pointer;
     &.left {
-      margin-right: 10px;
+      padding-right: 10px;
     }
     &.right {
-      margin-left: 10px;
+      padding-left: 10px;
     }
   }
 

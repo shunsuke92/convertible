@@ -1,16 +1,16 @@
 import { backgroundFixed } from '~~/utils/backgroundFixed';
 
-export const useCloseImageList = () => {
+export const useOpenImageList = () => {
   const { updateIsOpenImageList } = useIsOpenImageList();
   const { updatePaddingRight } = usePaddingRight();
 
-  const closeImageList = () => {
-    updateIsOpenImageList(false);
-    const paddingRight = backgroundFixed(false);
+  const openImageList = () => {
+    updateIsOpenImageList(true);
+    const paddingRight = backgroundFixed(true);
     updatePaddingRight(paddingRight);
   };
 
   return {
-    closeImageList,
+    openImageList,
   };
 };

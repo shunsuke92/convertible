@@ -44,16 +44,25 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-  .logo {
-    position: absolute;
-    top: 21px;
-    left: 50px;
-  }
-
   .logo-img {
     display: block;
-    width: inherit;
-    height: 18px;
+    width: 105px;
     fill: var(--color5);
+
+    @include responsive(xs) {
+    }
+    @include responsive(sm) {
+      width: 110px;
+    }
+    @include responsive(md) {
+      width: 115px;
+    }
+    @include responsive(lg) {
+      width: 120px;
+    }
+    @include responsive(xl) {
+    }
+    @include responsive(xxl) {
+    }
   }
 </style>

@@ -1,15 +1,14 @@
 <template>
   <Switch
     :on="isBatchSetting"
-    text-position="left"
-    top="20px"
-    right="32px"
+    text-position="right"
     :disabled="isConverting"
     @click="handleClick"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
-    >一括設定</Switch
   >
+    <slot></slot>
+  </Switch>
 </template>
 
 <script setup lang="ts">

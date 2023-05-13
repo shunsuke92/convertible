@@ -1,5 +1,5 @@
 <template>
-  <Stack16 direction="column" style="margin: 0 20px 30px 20px; width: 50%">
+  <Stack16 direction="column" class="resize-area">
     <Stack8 direction="column">
       <Stack8 align-items="center" justify-content="flex-start">
         <Stack8 direction="column">
@@ -144,12 +144,12 @@
   import {
     SettingFit,
     SettingPosition,
-    MenuSetttingValue,
-    UpdataMenuSetttingValue,
+    EditorSetttingValue,
+    UpdataEditorSetttingValue,
   } from '../types/index';
 
   interface Props {
-    data: MenuSetttingValue;
+    data: EditorSetttingValue;
   }
 
   const props = defineProps<Props>();
@@ -158,7 +158,7 @@
   const pendingWidth = ref(props.data.width);
   const pendingHeight = ref(props.data.height);
 
-  const { menuTargetFile } = useMenuTargetFile();
+  const { editorTargetFile } = useEditorTargetFile();
 
   watch(
     () => props.data.width,
@@ -178,12 +178,12 @@
     },
   );
 
-  const emit = defineEmits<{ (e: 'change', value: UpdataMenuSetttingValue): void }>();
+  const emit = defineEmits<{ (e: 'change', value: UpdataEditorSetttingValue): void }>();
 
   const getPositionDisabled = computed(() => {
     return (position: 'top' | 'bottom' | 'left' | 'right') => {
       const settingRatio = props.data.width / props.data.height;
-      const originalRatio = menuTargetFile().originalWidth / menuTargetFile().originalHeight;
+      const originalRatio = editorTargetFile().originalWidth / editorTargetFile().originalHeight;
       const sameRatio = originalRatio === settingRatio;
       const isShrunkWidth = originalRatio > settingRatio;
       let unavailablePosition = false;
@@ -252,11 +252,12 @@
   const adjustAspectRatio = (standard: 'width' | 'height') => {
     if (standard === 'width') {
       pendingHeight.value = Math.round(
-        pendingWidth.value * (menuTargetFile().originalHeight / menuTargetFile().originalWidth),
+        pendingWidth.value * (editorTargetFile().originalHeight / editorTargetFile().originalWidth),
       );
     } else {
       pendingWidth.value = Math.round(
-        pendingHeight.value * (menuTargetFile().originalWidth / menuTargetFile().originalHeight),
+        pendingHeight.value *
+          (editorTargetFile().originalWidth / editorTargetFile().originalHeight),
       );
     }
   };
@@ -286,6 +287,21 @@
 </script>
 
 <style lang="scss" scoped>
+  .resize-area {
+    @include responsive(xs) {
+    }
+    @include responsive(sm) {
+    }
+    @include responsive(md) {
+      width: 50%;
+    }
+    @include responsive(lg) {
+    }
+    @include responsive(xl) {
+    }
+    @include responsive(xxl) {
+    }
+  }
   .input-number {
     box-sizing: border-box;
     padding: 3px 6px;

@@ -1,5 +1,9 @@
 <template>
-  <div class="header"><p class="header-text">設定</p></div>
+  <div class="header">
+    <p class="header-text">
+      <slot></slot>
+    </p>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
@@ -12,7 +16,8 @@
     padding: 0 24px;
     width: 100%;
     height: 50px;
-    border-radius: 10px 10px 0 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
     background-color: var(--color5);
   }
 

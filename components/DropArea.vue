@@ -115,8 +115,7 @@
     flex-direction: column;
     justify-content: center;
     margin-bottom: 20px;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding: 120px 20px;
     width: 100%;
     border: 3px var(--color5) solid;
     border-radius: 8px;

@@ -26,7 +26,7 @@ export type OutputData = {
   outputFile: File | undefined;
 };
 
-export type MenuData = {
+export type EditorData = {
   isAutoAspectRatio: boolean;
 };
 
@@ -35,17 +35,17 @@ export type ManagementData = {
   settingId: number;
 };
 
-export type InputFiles = OriginalData & SettingData & OutputData & MenuData & ManagementData;
+export type InputFiles = OriginalData & SettingData & OutputData & EditorData & ManagementData;
 
 export type UpdateOriginalData = Partial<OriginalData>;
 export type UpdateSettingData = Partial<SettingData>;
 export type UpdateOutputData = Partial<OutputData>;
-export type UpdateMenuData = Partial<MenuData>;
+export type UpdateEditorData = Partial<EditorData>;
 export type UpdateManagementData = Partial<ManagementData>;
 export type UpdataInputFiles = UpdateOriginalData &
   UpdateSettingData &
   UpdateOutputData &
-  UpdateMenuData &
+  UpdateEditorData &
   UpdateManagementData;
 
 export type Format = 'jpeg' | 'png' | 'webp' | 'gif' | 'avif';
@@ -54,7 +54,7 @@ export type SettingFit = 'cover' | 'contain' | 'fill';
 export type SettingPosition = 'center' | 'top' | 'bottom' | 'right' | 'left';
 export type SettingBackground = `#${string}`;
 
-export type MenuSetttingValue = {
+export type EditorSetttingValue = {
   format: Format;
   formatLevel: FormatLevel;
   width: number;
@@ -66,4 +66,4 @@ export type MenuSetttingValue = {
   optimization: boolean;
 };
 
-export type UpdataMenuSetttingValue = Partial<MenuSetttingValue>;
+export type UpdataEditorSetttingValue = Partial<EditorSetttingValue>;

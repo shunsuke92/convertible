@@ -1,17 +1,17 @@
-import { MenuSetttingValue, UpdataInputFiles } from '../types/index';
+import { EditorSetttingValue, UpdataInputFiles } from '../types/index';
 
 export const useUpdateInputFileWithSettingData = () => {
   const { inputFiles, updateInputFiles } = useInputFiles();
-  const { selectedMenuIndex } = useSelectedMenuIndex();
-  const { selectedMenuIndex2 } = useSelectedMenuIndex2();
+  const { selectedEditorIndex } = useSelectedEditorIndex();
+  const { selectedEditorIndex2 } = useSelectedEditorIndex2();
   const { isBatchSetting } = useIsBatchSetting();
 
-  const updateInputFileWithSettingData = (res: MenuSetttingValue) => {
-    if (selectedMenuIndex.value === undefined || selectedMenuIndex2.value === undefined) return;
+  const updateInputFileWithSettingData = (res: EditorSetttingValue) => {
+    if (selectedEditorIndex.value === undefined || selectedEditorIndex2.value === undefined) return;
     if (isBatchSetting.value) {
       const length = inputFiles.value.length;
       for (let i = 0; i < length; i++) {
-        const firstFile = inputFiles.value[0][selectedMenuIndex2.value];
+        const firstFile = inputFiles.value[0][selectedEditorIndex2.value];
         const isResize = !(
           firstFile.originalWidth === res.width && firstFile.originalHeight === res.height
         );
@@ -22,19 +22,19 @@ export const useUpdateInputFileWithSettingData = () => {
         const isRebackground = !('#000000' === res.background);
         const isReoptimization = !(false === res.optimization);
         const isOptimizationAvailable =
-          inputFiles.value[i][selectedMenuIndex2.value].originalFormat === 'jpeg';
+          inputFiles.value[i][selectedEditorIndex2.value].originalFormat === 'jpeg';
 
         const updateData: UpdataInputFiles = {
           settingFormat: isReformat
             ? res.format
-            : inputFiles.value[i][selectedMenuIndex2.value].originalFormat,
+            : inputFiles.value[i][selectedEditorIndex2.value].originalFormat,
           settingFormatLevel: isReformatLevel ? res.formatLevel : 'middle',
           settingWidth: isResize
             ? res.width
-            : inputFiles.value[i][selectedMenuIndex2.value].originalWidth,
+            : inputFiles.value[i][selectedEditorIndex2.value].originalWidth,
           settingHeight: isResize
             ? res.height
-            : inputFiles.value[i][selectedMenuIndex2.value].originalHeight,
+            : inputFiles.value[i][selectedEditorIndex2.value].originalHeight,
           settingFit: isRefit ? res.fit : 'cover',
           settingPosition: isReposition ? res.position : 'center',
           settingBackground: isRebackground ? res.background : '#000000',
@@ -47,7 +47,7 @@ export const useUpdateInputFileWithSettingData = () => {
           isAutoAspectRatio: res.isAutoAspectRatio,
         };
 
-        updateInputFiles(updateData, i, selectedMenuIndex2.value);
+        updateInputFiles(updateData, i, selectedEditorIndex2.value);
       }
     } else {
       const updateData: UpdataInputFiles = {
@@ -66,7 +66,7 @@ export const useUpdateInputFileWithSettingData = () => {
         isAutoAspectRatio: res.isAutoAspectRatio,
       };
 
-      updateInputFiles(updateData, selectedMenuIndex.value, selectedMenuIndex2.value);
+      updateInputFiles(updateData, selectedEditorIndex.value, selectedEditorIndex2.value);
     }
   };
 

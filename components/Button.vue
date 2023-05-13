@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     class="button ripple"
     :class="getClass"
     :style="getStyle"
@@ -148,7 +149,7 @@
   }
 </style>
 
-<style>
+<style lang="scss">
   @keyframes ripple {
     to {
       opacity: 0;

@@ -1,19 +1,19 @@
 import { UpdataInputFiles } from '../types/index';
 
-export const useCancelMenu = () => {
+export const useCancelEditor = () => {
   const { inputFiles, updateInputFiles } = useInputFiles();
-  const { selectedMenuIndex } = useSelectedMenuIndex();
-  const { selectedMenuIndex2 } = useSelectedMenuIndex2();
-  const { closeMenu } = useCloseMenu();
+  const { selectedEditorIndex } = useSelectedEditorIndex();
+  const { selectedEditorIndex2 } = useSelectedEditorIndex2();
+  const { closeEditor } = useCloseEditor();
   const { isBatchSetting } = useIsBatchSetting();
 
-  const cancelMenu = (isAutoAspectRatio: boolean) => {
+  const cancelEditor = (isAutoAspectRatio: boolean) => {
     setIsAutoAspectRatio(isAutoAspectRatio);
-    closeMenu();
+    closeEditor();
   };
 
   const setIsAutoAspectRatio = (value: boolean) => {
-    if (selectedMenuIndex.value === undefined || selectedMenuIndex2.value === undefined) return;
+    if (selectedEditorIndex.value === undefined || selectedEditorIndex2.value === undefined) return;
     if (isBatchSetting.value) {
       const length = inputFiles.value.length;
       for (let i = 0; i < length; i++) {
@@ -21,18 +21,18 @@ export const useCancelMenu = () => {
           isAutoAspectRatio: value,
         };
 
-        updateInputFiles(updateData, i, selectedMenuIndex2.value);
+        updateInputFiles(updateData, i, selectedEditorIndex2.value);
       }
     } else {
       const updateData: UpdataInputFiles = {
         isAutoAspectRatio: value,
       };
 
-      updateInputFiles(updateData, selectedMenuIndex.value, selectedMenuIndex2.value);
+      updateInputFiles(updateData, selectedEditorIndex.value, selectedEditorIndex2.value);
     }
   };
 
   return {
-    cancelMenu,
+    cancelEditor,
   };
 };

@@ -1,6 +1,6 @@
 <template>
   <Button
-    width="140px"
+    :width="windowWidth >= 768 ? '140px' : windowWidth >= 576 ? '277px' : '172px'"
     height="40px"
     type="outline"
     :disabled="getDisabledAllSubmitButton"
@@ -17,6 +17,7 @@
   const { isConvertingAll } = useIsConvertingAll();
   const { inputFiles } = useInputFiles();
   const { isConverting } = useIsConverting();
+  const { windowWidth } = useWindowWidth();
 
   const handleClick = () => {
     if (isConverting.value) {

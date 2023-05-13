@@ -1,28 +1,28 @@
 <template>
   <div class="image-area">
     <div class="image-outer" :style="getImageOuterStyle">
-      <Image class="image" :style="getImageStyle" :file="menuTargetFile()" />
+      <Image class="image" :style="getImageStyle" :file="editorTargetFile()" />
       <div class="mark" :style="getMarkStyle"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { MenuSetttingValue } from '../types/index';
+  import { EditorSetttingValue } from '../types/index';
 
-  const IMAGE_SIZE = 350;
+  const IMAGE_SIZE = 330;
 
   interface Props {
-    data: MenuSetttingValue;
+    data: EditorSetttingValue;
   }
 
   const props = defineProps<Props>();
 
-  const { menuTargetFile } = useMenuTargetFile();
+  const { editorTargetFile } = useEditorTargetFile();
 
   const getImageOuterStyle = computed(() => {
-    const originalWidth = menuTargetFile().originalWidth;
-    const originalHeight = menuTargetFile().originalHeight;
+    const originalWidth = editorTargetFile().originalWidth;
+    const originalHeight = editorTargetFile().originalHeight;
     let width;
     let height;
     if (originalWidth > originalHeight) {
@@ -42,8 +42,8 @@
     if (props.data.fit === 'cover') {
       let width;
       let height;
-      const originalWidth = menuTargetFile().originalWidth;
-      const originalHeight = menuTargetFile().originalHeight;
+      const originalWidth = editorTargetFile().originalWidth;
+      const originalHeight = editorTargetFile().originalHeight;
       if (originalWidth > originalHeight) {
         width = originalWidth * (IMAGE_SIZE / originalWidth);
         height = originalHeight * (IMAGE_SIZE / originalWidth);
@@ -61,10 +61,10 @@
     } else {
       let baseWidth;
       let baseHeight;
-      const originalWidth = menuTargetFile().originalWidth;
-      const originalHeight = menuTargetFile().originalHeight;
-      const settingWidth = props.data.width ?? menuTargetFile().originalWidth;
-      const settingHeight = props.data.height ?? menuTargetFile().originalHeight;
+      const originalWidth = editorTargetFile().originalWidth;
+      const originalHeight = editorTargetFile().originalHeight;
+      const settingWidth = props.data.width ?? editorTargetFile().originalWidth;
+      const settingHeight = props.data.height ?? editorTargetFile().originalHeight;
 
       if (originalWidth > originalHeight) {
         baseWidth = IMAGE_SIZE;
@@ -109,10 +109,10 @@
   const getMarkStyle = computed(() => {
     let baseWidth;
     let baseHeight;
-    const originalWidth = menuTargetFile().originalWidth;
-    const originalHeight = menuTargetFile().originalHeight;
-    const settingWidth = props.data.width ?? menuTargetFile().originalWidth;
-    const settingHeight = props.data.height ?? menuTargetFile().originalHeight;
+    const originalWidth = editorTargetFile().originalWidth;
+    const originalHeight = editorTargetFile().originalHeight;
+    const settingWidth = props.data.width ?? editorTargetFile().originalWidth;
+    const settingHeight = props.data.height ?? editorTargetFile().originalHeight;
     if (originalWidth > originalHeight) {
       baseWidth = IMAGE_SIZE;
       baseHeight = IMAGE_SIZE * (originalHeight / originalWidth);
@@ -193,9 +193,20 @@
     position: relative;
     display: flex;
     justify-content: center;
-    margin: 0 20px 30px 20px;
-    width: 350px;
-    height: 350px;
+
+    @include responsive(xs) {
+    }
+    @include responsive(sm) {
+    }
+    @include responsive(md) {
+      width: 50%;
+    }
+    @include responsive(lg) {
+    }
+    @include responsive(xl) {
+    }
+    @include responsive(xxl) {
+    }
   }
 
   .image-outer {

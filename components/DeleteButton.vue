@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     class="button"
     :style="getStyle"
     :disabled="props.disabled"

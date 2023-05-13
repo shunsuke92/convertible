@@ -1,7 +1,7 @@
 <template>
   <div class="image-viewer" :class="getClass">
     <div class="image-outer" :style="getStyle">
-      <button :disabled="!getMultiImage" class="button" @click="openImageList">
+      <button type="button" :disabled="!getMultiImage" class="button" @click="openImageList">
         <Image class="image" :file="file" />
         <svg
           v-if="getMultiImage"
@@ -26,13 +26,18 @@
   const { inputFiles } = useInputFiles();
   const { isBatchSetting } = useIsBatchSetting();
   const { isInputAnimating } = useIsInputAnimating();
-  const { updateIsOpenImageList } = useIsOpenImageList();
+  const { openImageList } = useOpenImageList();
 
   interface Props {
     file: InputFiles;
+    width?: `${number}px`;
+    height?: `${number}px`;
   }
 
-  const props = defineProps<Props>();
+  const props = withDefaults(defineProps<Props>(), {
+    width: '200px',
+    height: '200px',
+  });
 
   const getClass = computed(() => {
     return { 'add-image-animation': isInputAnimating.value };
@@ -49,10 +54,6 @@
   const getMultiImage = computed(() => {
     return inputFiles.value.length > 1 && isBatchSetting.value;
   });
-
-  const openImageList = () => {
-    updateIsOpenImageList(true);
-  };
 </script>
 
 <style lang="scss" scoped>
@@ -61,8 +62,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 200px;
+    width: v-bind(width);
+    height: v-bind(height);
     border-radius: 8px;
     background-color: var(--white);
     &.add-image-animation {

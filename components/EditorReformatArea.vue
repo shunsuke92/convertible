@@ -1,10 +1,10 @@
 <template>
-  <Stack16 direction="column" style="margin: 20px 20px 30px 20px">
+  <Stack16 direction="column">
     <Stack8 direction="column">
       <Stack8>
         <MenuTitle>フォーマット</MenuTitle>
         <MenuTitle>
-          ( {{ getFormatName(menuTargetFile().originalFormat) }} →
+          ( {{ getFormatName(editorTargetFile().originalFormat) }} →
           {{ getFormatName(data.format) }} )</MenuTitle
         >
       </Stack8>
@@ -76,22 +76,27 @@
 </template>
 
 <script setup lang="ts">
-  import { Format, FormatLevel, MenuSetttingValue, UpdataMenuSetttingValue } from '../types/index';
+  import {
+    Format,
+    FormatLevel,
+    EditorSetttingValue,
+    UpdataEditorSetttingValue,
+  } from '../types/index';
 
   interface Props {
-    data: MenuSetttingValue;
+    data: EditorSetttingValue;
   }
 
   const props = defineProps<Props>();
 
-  const emit = defineEmits<{ (e: 'change', value: UpdataMenuSetttingValue): void }>();
+  const emit = defineEmits<{ (e: 'change', value: UpdataEditorSetttingValue): void }>();
 
   const { LOSSLESS } = useConstant();
-  const { menuTargetFile } = useMenuTargetFile();
+  const { editorTargetFile } = useEditorTargetFile();
   const { getFormatName } = useGetFormatName();
 
   const isFormatUnchanged = computed(() => {
-    return menuTargetFile().originalFormat === props.data.format;
+    return editorTargetFile().originalFormat === props.data.format;
   });
 
   const getSelectedFormat = computed(() => {
@@ -107,7 +112,7 @@
   });
 
   const getOptimizationMode = computed(() => {
-    return menuTargetFile().originalFormat === 'jpeg' && selectedFormat() === 'jpeg';
+    return editorTargetFile().originalFormat === 'jpeg' && selectedFormat() === 'jpeg';
   });
 
   const getLosslessMode = computed(() => {
@@ -137,7 +142,7 @@
 
   const checkOptimiztion = (key: Format) => {
     if (
-      menuTargetFile().originalFormat === 'jpeg' &&
+      editorTargetFile().originalFormat === 'jpeg' &&
       selectedFormat() === 'jpeg' &&
       key !== 'jpeg'
     ) {

@@ -1,22 +1,26 @@
 <template>
-  <div v-if="isOpenImageList" class="menu-wrapper">
-    <Mask @click="closeImageList" :on="isOpenImageList" />
-    <div class="menu">
-      <div class="header">
-        <p class="header-text">すべての画像</p>
-      </div>
-      <div class="content">
-        <div v-for="(image, index) in inputFiles" :key="index" class="image-outer">
-          <Image class="image" :file="image[0]" />
-        </div>
-      </div>
-      <div class="footer">
-        <div class="button-outer">
-          <Button type="outline" @click="closeImageList">閉じる</Button>
-        </div>
+  <Menu
+    :on="isOpenImageList"
+    position="fixed"
+    top="max(calc((100vh - 600px) / 2), calc(100vh - 90%) / 2)"
+    left="max(calc((100vw - 900px) / 2), calc(100vw - 90%) / 2)"
+    width="900px"
+    height="600px"
+    :cs="{ maxHeight: '90%', maxWidth: '90%' }"
+    @close="closeImageList"
+  >
+    <MenuHeader>すべての画像</MenuHeader>
+    <div class="content">
+      <div v-for="(image, index) in inputFiles" :key="index" class="image-outer">
+        <Image class="image" :file="image[0]" />
       </div>
     </div>
-  </div>
+    <MenuFooter>
+      <Stack0 align-items="center" justify-content="flex-end" style="width: 100%">
+        <Button type="outline" @click="closeImageList">閉じる</Button>
+      </Stack0>
+    </MenuFooter>
+  </Menu>
 </template>
 
 <script setup lang="ts">
@@ -26,35 +30,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .menu {
-    position: absolute;
-    top: 230px;
-    left: calc((1200px - 900px) / 2);
-    z-index: 1000;
-    width: 900px;
-    height: 600px;
-    border-radius: 10px;
-    background-color: var(--white);
-    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.3);
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 24px;
-    width: 100%;
-    height: 50px;
-    border-radius: 10px 10px 0 0;
-    background-color: var(--color5);
-  }
-
-  .header-text {
-    color: var(--white);
-    font-weight: 500;
-    font-size: var(--font-size-xl);
-  }
-
   .content {
     display: flex;
     overflow-y: auto;
@@ -73,19 +48,5 @@
 
   .image {
     height: 100px;
-  }
-
-  .footer {
-    width: 100%;
-    height: 60px;
-  }
-
-  .button-outer {
-    position: absolute;
-    right: 24px;
-    bottom: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 </style>
