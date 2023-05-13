@@ -62,6 +62,7 @@
         text="JPEG最適化"
         text-position="left"
         :disabled="!getOptimizationMode"
+        aria-label="jpeg-optimization-switch"
         @click="clickOptimization"
         ><MenuTitle>JPEG最適化</MenuTitle></Switch
       >

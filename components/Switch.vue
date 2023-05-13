@@ -8,7 +8,7 @@
       type="button"
       class="button"
       :class="{ on: on }"
-      aria-label="switch"
+      :aria-label="ariaLabel"
       :disabled="disabled"
       @click="click"
       @mouseenter="mouseenter"
@@ -57,6 +57,11 @@
       type: Boolean,
       required: false,
       default: false,
+    },
+    ariaLabel: {
+      type: String,
+      required: false,
+      default: 'switch',
     },
   });
 

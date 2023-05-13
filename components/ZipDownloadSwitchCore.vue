@@ -1,5 +1,10 @@
 <template>
-  <Switch :on="isDownloadByFolder" text-position="right" @click="clickDownloadByFolder">
+  <Switch
+    :on="isDownloadByFolder"
+    text-position="right"
+    aria-label="download-folder-switch"
+    @click="clickDownloadByFolder"
+  >
     <slot></slot>
   </Switch>
 </template>

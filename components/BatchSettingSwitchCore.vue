@@ -4,6 +4,7 @@
     text-position="right"
     :disabled="isConverting"
     @click="handleClick"
+    aria-label="batch-setting-switch"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >

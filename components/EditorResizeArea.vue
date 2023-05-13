@@ -29,7 +29,11 @@
         </Stack8>
       </Stack8>
       <p v-if="isDegitOverflow" class="attention">9999以下で入力してください。</p>
-      <Switch :on="data.isAutoAspectRatio" text-position="left" @click="clickSwitch"
+      <Switch
+        :on="data.isAutoAspectRatio"
+        text-position="left"
+        aria-label="auto-aspectraation-switch"
+        @click="clickSwitch"
         >アスペクト比を維持</Switch
       ></Stack8
     >
