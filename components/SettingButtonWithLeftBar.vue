@@ -18,7 +18,7 @@
     justify-content: center;
   }
   .setting-button {
-    margin-left: 16px;
+    margin-left: 10px;
 
     @include responsive(xs) {
     }

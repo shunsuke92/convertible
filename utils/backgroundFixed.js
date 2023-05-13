@@ -35,5 +35,5 @@ export const backgroundFixed = (isFixed) => {
   // 背面固定解除時に元の位置にスクロールする
   if (!isFixed) window.scrollTo(0, scrollY * -1);
 
-  return isFixed ? `${scrollbarWidth}px` : '';
+  return isFixed ? `${scrollbarWidth}px` : '0';
 };

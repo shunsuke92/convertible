@@ -13,26 +13,28 @@
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    margin-right: 40px;
+    margin-right: 20px;
     padding: 7px 10px;
-    width: 305px;
+    width: 298px;
     border-radius: 8px;
     background-color: var(--white);
 
     @include responsive(xs) {
     }
     @include responsive(sm) {
+      margin-right: 40px;
       padding: 7px 18px;
-      width: 450px;
+      width: 420px;
     }
     @include responsive(md) {
+      margin-right: 32px;
     }
     @include responsive(lg) {
       align-items: center;
       flex-direction: row;
       justify-content: space-between;
       margin-right: 30px;
-      width: 700px;
+      width: 670px;
     }
     @include responsive(xl) {
     }

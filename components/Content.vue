@@ -13,10 +13,36 @@
       <ContentDeleteButton :file-index="fileIndex" />
     </Stack0>
   </div>
+  <div v-else-if="windowWidth >= 992" class="wrapper" :style="getStyle">
+    <Stack0 align-items="flex-start" justify-content="space-between">
+      <Stack16 direction="column">
+        <ImageViewer
+          :file="file[0]"
+          :id="`content-image-${fileIndex}`"
+          width="170px"
+          height="170px"
+        />
+        <Stack12 direction="column" :id="`content-button-${fileIndex}`">
+          <ConversionButton :file-index="fileIndex" />
+          <DownloadButton :file-index="fileIndex" />
+        </Stack12>
+      </Stack16>
+      <Stack10 direction="column" :id="`content-setting-${fileIndex}`">
+        <FileNameViewer :file="file[0]" />
+        <SettingViewer :file="file" :file-index="fileIndex" />
+      </Stack10>
+      <ContentDeleteButton :file-index="fileIndex" />
+    </Stack0>
+  </div>
   <div v-else-if="windowWidth >= 768" class="wrapper" :style="getStyle">
     <Stack0 align-items="flex-start" justify-content="space-between">
       <Stack16 direction="column">
-        <ImageViewer :file="file[0]" :id="`content-image-${fileIndex}`" />
+        <ImageViewer
+          :file="file[0]"
+          :id="`content-image-${fileIndex}`"
+          width="200px"
+          height="200px"
+        />
         <Stack12 direction="column" :id="`content-button-${fileIndex}`">
           <ConversionButton :file-index="fileIndex" />
           <DownloadButton :file-index="fileIndex" />
@@ -34,7 +60,7 @@
       <Stack16 direction="row" :id="`content-image-${fileIndex}`">
         <Stack8 direction="column">
           <FileNameViewer :file="file[0]" />
-          <ImageViewer :file="file[0]" width="370px" height="370px" />
+          <ImageViewer :file="file[0]" width="300px" height="300px" />
         </Stack8>
         <Stack12
           direction="column"
@@ -56,7 +82,7 @@
       <Stack16 direction="row">
         <Stack8 direction="column" :id="`content-image-${fileIndex}`">
           <FileNameViewer :file="file[0]" />
-          <ImageViewer :file="file[0]" width="336px" height="336px" />
+          <ImageViewer :file="file[0]" width="316px" height="316px" />
           <Stack12 direction="column" :id="`content-button-${fileIndex}`">
             <ConversionButton :file-index="fileIndex" />
             <DownloadButton :file-index="fileIndex" />

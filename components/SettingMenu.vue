@@ -25,6 +25,7 @@
   const top = ref<number>(0);
   const right = 0;
 
+  // eslint-disable-next-line
   const handleClick = (event: any) => {
     openSettingMenu();
     top.value = event.target.clientWidth;

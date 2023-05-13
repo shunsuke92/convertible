@@ -44,11 +44,25 @@
   .success-message {
     position: absolute;
     top: 0;
-    left: calc(100% + 14px);
+    left: calc(100% + 7px);
     display: flex;
     align-items: center;
     width: 30px;
     height: 100%;
+
+    @include responsive(xs) {
+    }
+    @include responsive(sm) {
+      left: calc(100% + 14px);
+    }
+    @include responsive(md) {
+    }
+    @include responsive(lg) {
+    }
+    @include responsive(xl) {
+    }
+    @include responsive(xxl) {
+    }
   }
 
   .success-icon {

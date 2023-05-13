@@ -46,32 +46,28 @@
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 0 30px 100px 30px;
-    padding-right: calc((100% - 360px) / 2);
-    padding-left: calc((100% - 360px) / 2);
-    max-width: 1200px;
+    padding: 0 10px 100px 10px;
+    max-width: 360px;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 40px);
+    border-radius: 10px;
     background-color: var(--white);
 
     @include responsive(xs) {
     }
     @include responsive(sm) {
-      padding-right: calc((100% - 560px) / 2);
-      padding-left: calc((100% - 560px) / 2);
+      padding: 0 20px 100px 20px;
+      max-width: 560px;
     }
     @include responsive(md) {
-      padding-right: calc((100% - 750px) / 2);
-      padding-left: calc((100% - 750px) / 2);
+      padding: 0 30px 100px 30px;
+      max-width: 750px;
     }
     @include responsive(lg) {
-      padding-right: calc((100% - 970px) / 2);
-      padding-left: calc((100% - 970px) / 2);
+      max-width: 970px;
     }
     @include responsive(xl) {
-      padding: 0 30px 100px 30px;
-      height: calc(100vh - 40px);
-      border-radius: 10px;
+      max-width: 1200px;
     }
     @include responsive(xxl) {
     }

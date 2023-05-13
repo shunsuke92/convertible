@@ -95,6 +95,10 @@
     font-size: var(--font-size-md);
     transition: all 0.2s;
 
+    &.disabled {
+      pointer-events: none;
+    }
+
     &.fill {
       background-color: v-bind(color);
       color: var(--white);

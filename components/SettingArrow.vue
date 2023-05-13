@@ -53,8 +53,7 @@
     @include responsive(xs) {
     }
     @include responsive(sm) {
-      margin: 0 16px;
-      width: 32px;
+      width: 28px;
     }
     @include responsive(md) {
     }

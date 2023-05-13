@@ -1,6 +1,6 @@
 <template>
   <Button
-    :width="windowWidth >= 768 ? '160px' : windowWidth >= 576 ? '277px' : '172px'"
+    :width="windowWidth >= 768 ? '160px' : windowWidth >= 576 ? '252px' : '162px'"
     height="40px"
     type="fill"
     :disabled="getDisabled"
