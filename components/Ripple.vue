@@ -43,7 +43,7 @@
   const createRipple = (event: any) => {
     const button = event.currentTarget;
 
-    var clientRect = button?.getBoundingClientRect();
+    const clientRect = button?.getBoundingClientRect();
     if (clientRect === undefined) return;
     const buttonPositionX = clientRect.left;
     const buttonPositionY = clientRect.top;
