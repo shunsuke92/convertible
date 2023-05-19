@@ -1,8 +1,5 @@
 <template>
-  <Stack16
-    direction="column"
-    alignItems="center"
-    justifyContent="center"
+  <Stack0
     class="drop-area"
     :class="getClass"
     @dragenter="dragEnter"
@@ -10,73 +7,108 @@
     @dragover.prevent
     @drop.prevent="handleDrop"
   >
-    <svg
-      class="icon"
-      :class="{ hide: isUploaded }"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 308.47 370.52"
-      fill="#231815"
+    <Stack16
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      @dragenter.stop
+      @dragleave.stop
     >
-      <path
-        d="M308.47,101.7c-.02-.52-.07-1.05-.16-1.56v-9.22c0-3.37-1.34-6.61-3.72-9L226.39,3.73c-2.39-2.38-5.62-3.73-8.99-3.73H29.57C13.25,.02,.02,13.25,0,29.57V340.95c.02,16.32,13.25,29.55,29.57,29.57h249.17c16.32-.02,29.55-13.25,29.57-29.57V103.26c.09-.52,.14-1.04,.16-1.57m-32.83-12.72h-61.09V27.88l61.09,61.09Zm3.1,256.1H29.57c-2.27,0-4.11-1.84-4.11-4.11V29.57c0-2.27,1.84-4.11,4.11-4.11H189.09V101.68c0,7.03,5.69,12.73,12.72,12.73h81.04v226.54c0,2.27-1.84,4.11-4.11,4.11"
+      <svg
+        class="icon"
+        :class="{ hide: isUploaded }"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 308.47 370.52"
+        fill="#231815"
+      >
+        <path
+          d="M308.47,101.7c-.02-.52-.07-1.05-.16-1.56v-9.22c0-3.37-1.34-6.61-3.72-9L226.39,3.73c-2.39-2.38-5.62-3.73-8.99-3.73H29.57C13.25,.02,.02,13.25,0,29.57V340.95c.02,16.32,13.25,29.55,29.57,29.57h249.17c16.32-.02,29.55-13.25,29.57-29.57V103.26c.09-.52,.14-1.04,.16-1.57m-32.83-12.72h-61.09V27.88l61.09,61.09Zm3.1,256.1H29.57c-2.27,0-4.11-1.84-4.11-4.11V29.57c0-2.27,1.84-4.11,4.11-4.11H189.09V101.68c0,7.03,5.69,12.73,12.72,12.73h81.04v226.54c0,2.27-1.84,4.11-4.11,4.11"
+        />
+        <path
+          d="M197.43,201.89h-38.39v-38.39c0-4.54-3.68-8.23-8.23-8.23s-8.23,3.68-8.23,8.23v38.39h-38.39c-4.54,0-8.23,3.68-8.23,8.23s3.68,8.23,8.23,8.23h38.39v38.39c0,4.54,3.68,8.23,8.23,8.23s8.23-3.68,8.23-8.23v-38.39h38.39c4.54,0,8.23-3.68,8.23-8.23s-3.68-8.23-8.23-8.23Z"
+        />
+      </svg>
+      <Stack0 direction="column" alignItems="center">
+        <p class="text">アップロードする画像ファイルをドラッグ＆ドロップします。</p>
+        <p class="sub-text">対応ファイル：JPEG / PNG / GIF / WebP / AVIF</p>
+      </Stack0>
+      <input
+        id="upload"
+        class="upload"
+        type="file"
+        :accept="SUPPORT_FORMAT.join(',')"
+        multiple
+        @change="handleChange"
       />
-      <path
-        d="M197.43,201.89h-38.39v-38.39c0-4.54-3.68-8.23-8.23-8.23s-8.23,3.68-8.23,8.23v38.39h-38.39c-4.54,0-8.23,3.68-8.23,8.23s3.68,8.23,8.23,8.23h38.39v38.39c0,4.54,3.68,8.23,8.23,8.23s8.23-3.68,8.23-8.23v-38.39h38.39c4.54,0,8.23-3.68,8.23-8.23s-3.68-8.23-8.23-8.23Z"
-      />
-    </svg>
-    <Stack0 direction="column" alignItems="center">
-      <p class="text">アップロードする画像ファイルをドラッグ＆ドロップします。</p>
-      <p class="sub-text">対応ファイル：JPEG / PNG / GIF / WebP / AVIF</p>
-    </Stack0>
-    <input
-      id="upload"
-      class="upload"
-      type="file"
-      :accept="SUPPORT_FORMAT.join(',')"
-      multiple
-      @change="handleChange"
-    />
-    <label for="upload" class="upload-label">ファイルを選択</label>
-  </Stack16>
+      <label for="upload" class="upload-label">ファイルを選択</label>
+    </Stack16>
+  </Stack0>
 </template>
 
 <script setup lang="ts">
   const isEnter = ref(false);
   const { SUPPORT_FORMAT } = useConstant();
   const { inputFiles } = useInputFiles();
-
   const { createInputFile } = useCreateInputFile();
+
+  let dropEreaWidth = 0;
+  let dropEreaHeight = 0;
+  let dropEreaTop = 0;
+  let dropEreaLeft = 0;
+
+  onMounted(() => {
+    window.matchMedia('(min-width:375px)').addEventListener('change', setDropAreaSize);
+    window.matchMedia('(min-width:576px)').addEventListener('change', setDropAreaSize);
+    window.matchMedia('(min-width:768px)').addEventListener('change', setDropAreaSize);
+    window.matchMedia('(min-width:992px)').addEventListener('change', setDropAreaSize);
+    window.matchMedia('(min-width:1200px)').addEventListener('change', setDropAreaSize);
+    window.matchMedia('(min-width:1400px)').addEventListener('change', setDropAreaSize);
+
+    setDropAreaSize();
+  });
+
+  const isUploaded = computed(() => {
+    return inputFiles.value.length > 0;
+  });
+
+  watch(isUploaded, () => {
+    setTimeout(setDropAreaSize, 700);
+  });
+
+  const setDropAreaSize = () => {
+    const elements = document.getElementsByClassName('drop-area');
+    if (elements.length === 0) return;
+
+    const clientRect = elements[0].getBoundingClientRect();
+    dropEreaWidth = clientRect.width;
+    dropEreaHeight = clientRect.height;
+    dropEreaTop = clientRect.top;
+    dropEreaLeft = clientRect.left;
+  };
+
+  // eslint-disable-next-line
+  const isDropErea = (event: any, type: 'in' | 'out') => {
+    const margin = type === 'in' ? 50 : -50;
+    return (
+      event.x + margin >= dropEreaLeft &&
+      event.x - margin <= dropEreaLeft + dropEreaWidth &&
+      event.y + margin >= dropEreaTop &&
+      event.y - margin <= dropEreaTop + dropEreaHeight
+    );
+  };
 
   // eslint-disable-next-line
   const dragEnter = (event: any) => {
-    // HACK: ドロップエリア内でのイベントは無視する
-    if (
-      event.fromElement === null ||
-      (event.fromElement.className !== 'main' &&
-        event.fromElement.className !== 'container' &&
-        event.fromElement.className !== 'attention' &&
-        event.fromElement.className !== 'heading' &&
-        event.fromElement.className !== 'text' &&
-        event.fromElement.className !== 'title')
-    )
-      return;
-    isEnter.value = true;
+    if (isDropErea(event, 'in')) {
+      isEnter.value = true;
+    }
   };
 
   // eslint-disable-next-line
   const dragLeave = (event: any) => {
-    // HACK: ドロップエリア内でのイベントは無視する
-    if (
-      event.fromElement === null ||
-      (event.fromElement.className !== 'main' &&
-        event.fromElement.className !== 'container' &&
-        event.fromElement.className !== 'attention' &&
-        event.fromElement.className !== 'heading' &&
-        event.fromElement.className !== 'text' &&
-        event.fromElement.className !== 'title')
-    )
-      return;
-    isEnter.value = false;
+    if (!isDropErea(event, 'out')) {
+      isEnter.value = false;
+    }
   };
 
   // eslint-disable-next-line
@@ -98,10 +130,6 @@
 
     createInputFile(files);
   };
-
-  const isUploaded = computed(() => {
-    return inputFiles.value.length > 0;
-  });
 
   const getClass = computed(() => {
     return { enter: isEnter.value, small: isUploaded.value };
@@ -154,8 +182,8 @@
       background-color: var(--color4);
     }
     &.small {
-      padding-top: 30px;
-      padding-bottom: 30px;
+      padding-top: 60px;
+      padding-bottom: 60px;
     }
   }
 

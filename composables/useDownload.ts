@@ -14,25 +14,6 @@ export const useDownload = () => {
     }
   };
 
-  const calculateDownloadFileNum = (fileIndex?: number) => {
-    // ダウンロードファイル数を算出
-    const fileNum = fileIndex !== undefined ? 1 : inputFiles.value.length;
-    let downloadNum = 0;
-    let indexAtSingle = 0;
-    for (let i = 0; i < fileNum; i++) {
-      const file = fileIndex !== undefined ? fileIndex : i;
-      const settingNum = inputFiles.value[file].length;
-      for (let j = 0; j < settingNum; j++) {
-        if (inputFiles.value[file][j].outputImage) {
-          downloadNum++;
-          indexAtSingle = i;
-        }
-      }
-    }
-
-    return { downloadNum, indexAtSingle };
-  };
-
   const downloadAllFiles = () => {
     // ダウンロードファイル数を算出
     const { downloadNum, indexAtSingle } = calculateDownloadFileNum();
@@ -118,6 +99,7 @@ export const useDownload = () => {
         const folderName = `${createFileName(file, j)}.${getFormat(file, j)}`;
         const data = inputFiles.value[file][j].outputInfo + inputFiles.value[file][j].outputImage;
         downloader(folderName, data);
+        await sleep(300);
       }
     }
   };
@@ -128,6 +110,25 @@ export const useDownload = () => {
     link.href = data;
     link.click();
     URL.revokeObjectURL(link.href);
+  };
+
+  const calculateDownloadFileNum = (fileIndex?: number) => {
+    // ダウンロードファイル数を算出
+    const fileNum = fileIndex !== undefined ? 1 : inputFiles.value.length;
+    let downloadNum = 0;
+    let indexAtSingle = 0;
+    for (let i = 0; i < fileNum; i++) {
+      const file = fileIndex !== undefined ? fileIndex : i;
+      const settingNum = inputFiles.value[file].length;
+      for (let j = 0; j < settingNum; j++) {
+        if (inputFiles.value[file][j].outputImage) {
+          downloadNum++;
+          indexAtSingle = i;
+        }
+      }
+    }
+
+    return { downloadNum, indexAtSingle };
   };
 
   const createFileName = (fileIndex: number, settingIndex: number) => {
@@ -172,6 +173,11 @@ export const useDownload = () => {
         today.getMilliseconds().toString().padStart(3, '0');
     }
     return date;
+  };
+
+  // 同期的に処理を止める
+  const sleep = (second: number) => {
+    return new Promise((resolve) => setTimeout(resolve, second));
   };
 
   return {

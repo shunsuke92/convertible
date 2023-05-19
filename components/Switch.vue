@@ -1,10 +1,10 @@
 <template>
   <div class="switch" :style="getStyle" :class="getClass">
-    <label v-if="textPosition === 'left'" for="switch-button" class="text left"
+    <label v-if="textPosition === 'left'" :for="`switch-button${id}`" class="text left"
       ><slot></slot
     ></label>
     <button
-      id="switch-button"
+      :id="`switch-button${id}`"
       type="button"
       class="button"
       :class="{ on: on }"
@@ -14,7 +14,7 @@
       @mouseenter="mouseenter"
       @mouseleave="mouseleave"
     ></button>
-    <label v-if="textPosition === 'right'" for="switch-button" class="text right"
+    <label v-if="textPosition === 'right'" :for="`switch-button${id}`" class="text right"
       ><slot></slot
     ></label>
   </div>
@@ -22,6 +22,10 @@
 
 <script setup lang="ts">
   import type { CSSProperties } from 'vue';
+
+  const { createId } = useCreateId();
+
+  const id = createId();
 
   const props = defineProps({
     on: {
@@ -110,6 +114,10 @@
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
+
+    &.disabled {
+      pointer-events: none;
+    }
   }
 
   .text {

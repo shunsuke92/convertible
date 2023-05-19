@@ -17,6 +17,8 @@ export const useSetFirstSettingToAll = () => {
       for (let j = 0; j < settingNum; j++) {
         const firstFile = inputFiles.value[0][j];
         const targetFile = inputFiles.value[i][0];
+
+        // 一番上のファイルの各設定に変更があるか？
         const isResize = !(
           firstFile.originalWidth === firstFile.settingWidth &&
           firstFile.originalHeight === firstFile.settingHeight

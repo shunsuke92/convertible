@@ -186,7 +186,7 @@ export const useSubmit = () => {
         if (response.data.data.errorMessage.includes('timed out')) {
           errorMessage(5);
         } else if (response.data.data.errorMessage.includes('size exceeded maximum')) {
-          errorMessage(6);
+          errorMessage(6, inputFiles.value[index][index2].originalName);
         } else {
           errorMessage(7);
         }

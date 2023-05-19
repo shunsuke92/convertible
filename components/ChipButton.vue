@@ -130,6 +130,7 @@
       border-color: var(--gray3);
       background-color: var(--white);
       color: var(--gray3);
+      pointer-events: none;
     }
   }
 </style>

@@ -12,6 +12,8 @@ export const useUpdateInputFileWithSettingData = () => {
       const length = inputFiles.value.length;
       for (let i = 0; i < length; i++) {
         const firstFile = inputFiles.value[0][selectedEditorIndex2.value];
+
+        // 一番上のファイルの各設定に変更があるか？
         const isResize = !(
           firstFile.originalWidth === res.width && firstFile.originalHeight === res.height
         );

@@ -137,6 +137,8 @@ export const useCreateInputFile = () => {
         const settingData: InputFiles[] = [];
         for (let j = 0; j < firstFileSettingNum; j++) {
           const firstFile = inputFiles.value[0][j];
+
+          // 一番上のファイルの各設定に変更があるか？
           const isResize = !(
             firstFile.originalWidth === firstFile.settingWidth &&
             firstFile.originalHeight === firstFile.settingHeight
