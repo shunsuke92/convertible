@@ -89,4 +89,5 @@ export default defineNuxtConfig({
       apiKey: '',
     },
   },
+  components: [{ path: '~/components', pathPrefix: false }],
 });
