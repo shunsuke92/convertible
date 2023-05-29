@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     background-color: var(--color1);
   }

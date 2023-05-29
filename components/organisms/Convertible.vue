@@ -1,14 +1,14 @@
 <template>
   <Main>
+    <TopBar />
     <Container>
-      <Header />
       <DropArea />
       <Contents />
       <!-- <Attention /> -->
-      <BottomBar />
       <ImageList />
       <Editor />
     </Container>
+    <BottomBar />
   </Main>
 </template>
 

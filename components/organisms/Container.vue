@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <slot></slot>
+    <div class="container-inner">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -8,27 +10,31 @@
 
 <style lang="scss" scoped>
   .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .container-inner {
     position: relative;
     display: flex;
-    overflow-x: auto;
     align-items: center;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 0 10px 100px 10px;
+    padding: 110px 10px 100px 10px;
+    min-height: 100vh;
     max-width: 360px;
     width: 100%;
-    height: calc(100vh - 40px);
     border-radius: 10px;
     background-color: var(--white);
 
     @include responsive(xs) {
     }
     @include responsive(sm) {
-      padding: 0 20px 100px 20px;
+      padding: 110px 20px 100px 20px;
       max-width: 560px;
     }
     @include responsive(md) {
-      padding: 0 30px 100px 30px;
+      padding: 110px 30px 100px 30px;
       max-width: 750px;
     }
     @include responsive(lg) {
@@ -39,15 +45,5 @@
     }
     @include responsive(xxl) {
     }
-  }
-
-  // TransitionGroupでのアニメーション時にスクロールバーが表示されてしまうため、スクロールバーを非表示にする。
-  .container {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE */
-  }
-
-  .container::-webkit-scrollbar {
-    display: none; /* Chrome、Safari、Edge */
   }
 </style>

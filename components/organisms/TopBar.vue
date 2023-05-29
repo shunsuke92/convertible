@@ -1,9 +1,9 @@
 <template>
-  <Stack class="header" align-items="center" justify-content="space-between">
+  <Bar type="top">
     <Logo />
     <BatchSettingSwitchOnTop v-if="windowWidth >= 768" />
-    <HamburgerMenu v-else />
-  </Stack>
+    <HamburgerMenu v-else style="position: absolute; right: 30px" />
+  </Bar>
 </template>
 
 <script setup lang="ts">
