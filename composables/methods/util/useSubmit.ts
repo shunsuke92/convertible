@@ -170,10 +170,17 @@ export const useSubmit = () => {
         data: res,
         states: true,
       }))
-      .catch((err) => ({
+      .catch((err) => {
+        console.log(err);
+        return {
+          data: err,
+          states: false,
+        };
+      });
+    /* .catch((err) => ({
         data: err,
         states: false,
-      }));
+      })); */
 
     // 送信済みフラグをON
     updateIsAlreadySubmit(true);
