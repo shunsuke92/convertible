@@ -158,7 +158,7 @@ export const useSubmit = () => {
     if (process.env.NODE_ENV === 'development') {
       apiUrl = '/dev/v1/image-converter';
     } else {
-      apiUrl = 'https://0nw778k56a.execute-api.ap-northeast-1.amazonaws.com/api/v1/image-converter';
+      apiUrl = 'https://0nw778k56a.execute-api.ap-northeast-1.amazonaws.com/dev/v1/image-converter';
     }
     const response = await axios
       .post(apiUrl, data, {
