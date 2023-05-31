@@ -87,6 +87,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiKey: '',
+      apiPassword: '',
     },
   },
   components: [{ path: '~/components', pathPrefix: false }],

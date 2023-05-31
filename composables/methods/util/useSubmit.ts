@@ -127,8 +127,12 @@ export const useSubmit = () => {
     // キャンセルキーが押下されたとき
     if (isCancelConversion.value) return;
 
+    // 環境変数取得
+    const runtimeConfig = useRuntimeConfig();
+
     // 送信データを作成
     const data = {
+      password: runtimeConfig.public.apiPassword,
       image: inputFiles.value[index][index2].originalImage,
       type: inputFiles.value[index][index2].originalFormat,
       format: inputFiles.value[index][index2].settingFormat,
@@ -153,7 +157,6 @@ export const useSubmit = () => {
       background: inputFiles.value[index][index2].settingBackground,
     };
     // Amazon API Gatewayへの送信処理
-    const runtimeConfig = useRuntimeConfig();
     let apiUrl: string;
     if (process.env.NODE_ENV === 'development') {
       apiUrl = '/dev/v1/image-converter';
