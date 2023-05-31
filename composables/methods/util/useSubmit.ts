@@ -185,10 +185,13 @@ export const useSubmit = () => {
       // サーバー側でのエラーを検証
       if (response.data.data.errorMessage) {
         if (response.data.data.errorMessage.includes('timed out')) {
+          // タイムアウト
           errorMessage(5);
         } else if (response.data.data.errorMessage.includes('size exceeded maximum')) {
+          // サイズオーバー
           errorMessage(6, inputFiles.value[index][index2].originalName);
         } else {
+          // その他
           errorMessage(7);
         }
         return;
@@ -228,7 +231,15 @@ export const useSubmit = () => {
       // 変換完了数をカウントアップ
       increaseNumberOfCompletedConversions();
     } else {
-      errorMessage(8);
+      console.log(response.data.response.status);
+      // サーバー側でのエラーを検証
+      if (response.data.response.status === 429) {
+        // 429 Too Many Requests
+        errorMessage(12);
+        updateIsCancelConversion(true);
+      } else {
+        errorMessage(8);
+      }
     }
   };
 

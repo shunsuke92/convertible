@@ -48,6 +48,10 @@ export const useErrorMessage = () => {
       case 11:
         alert('画像の取り込み中にエラーが発生しました。');
         break;
+
+      case 12:
+        alert('一定時間内のリクエスト制限に達しました。\n時間をおいて、もう一度お試しください。');
+        break;
     }
   };
 
