@@ -204,7 +204,7 @@ export const useSubmit = () => {
       const data = JSON.parse(dataJson);
 
       // Base64をfileに変換する
-      const bin = atob(data.image);
+      const bin = window.atob(data.image);
       const buffer = new Uint8Array(bin.length);
       for (let j = 0; j < bin.length; j++) {
         buffer[j] = bin.charCodeAt(j);
