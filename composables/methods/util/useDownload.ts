@@ -51,7 +51,7 @@ export const useDownload = () => {
     const zip = new JSZip();
 
     // フォルダを作成
-    const folderName = `${getDate()}_convertible`;
+    const folderName = `convertible`;
     const folder = zip.folder(folderName);
     if (folder === null) return;
 
@@ -87,7 +87,9 @@ export const useDownload = () => {
     const zipFile = await zip.generateAsync({ type: 'blob' });
 
     // ダウンロード
-    downloader(`${folderName}.zip`, URL.createObjectURL(zipFile));
+    const data = URL.createObjectURL(zipFile);
+    downloader(`${folderName}.zip`, data);
+    URL.revokeObjectURL(data);
   };
 
   const downloadByFile = async (fileIndex?: number) => {
@@ -109,7 +111,6 @@ export const useDownload = () => {
     link.download = folderName;
     link.href = data;
     link.click();
-    URL.revokeObjectURL(link.href);
   };
 
   const calculateDownloadFileNum = (fileIndex?: number) => {
@@ -151,7 +152,8 @@ export const useDownload = () => {
     return fileName;
   };
 
-  const getDate = (type: 'second' | 'millisecond' = 'second') => {
+  // フォルダ名に日付をつけるために使用していた
+  /* const getDate = (type: 'second' | 'millisecond' = 'second') => {
     const today = new Date();
     let date;
     if (type === 'second') {
@@ -173,7 +175,7 @@ export const useDownload = () => {
         today.getMilliseconds().toString().padStart(3, '0');
     }
     return date;
-  };
+  }; */
 
   // 同期的に処理を止める
   const sleep = (second: number) => {
