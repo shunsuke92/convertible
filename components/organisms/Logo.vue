@@ -21,7 +21,7 @@
       width: 115px;
     }
     @include responsive(lg) {
-      width: 120px;
+      width: 130px;
     }
     @include responsive(xl) {
     }
