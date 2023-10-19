@@ -231,7 +231,6 @@ export const useSubmit = () => {
       // 変換完了数をカウントアップ
       increaseNumberOfCompletedConversions();
     } else {
-      console.log(response.data.response.status);
       // サーバー側でのエラーを検証
       if (response.data.response.status === 429) {
         // 429 Too Many Requests

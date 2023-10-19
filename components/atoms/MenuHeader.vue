@@ -18,11 +18,14 @@
     height: 50px;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
-    background-color: var(--color5);
+    background-color: var(--primary700);
+    .dark-mode & {
+      background-color: var(--gray700);
+    }
   }
 
   .header-text {
-    color: var(--white);
+    color: var(--gray50);
     font-weight: 500;
     font-size: var(--font-size-xl);
   }

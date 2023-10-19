@@ -4,7 +4,7 @@
     class="button"
     :class="getClass"
     :style="getStyle"
-    :disabled="getDisabled"
+    :disabled="disabled"
     @mousedown="handleMousedown"
   >
     <slot></slot>
@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
   import type { CSSProperties } from 'vue';
+  const colorMode = useColorMode();
 
   interface Props {
     fontSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -36,8 +37,8 @@
     width: undefined,
     height: undefined,
     type: 'fill',
-    color: '#30a13f',
-    hoverColor: '#2b8b37',
+    color: undefined,
+    hoverColor: undefined,
     disabled: false,
     disabledStyle: true,
     padding: undefined,
@@ -52,7 +53,9 @@
 
   const handleMousedown = (event: MouseEvent) => {
     if (props.clickReaction === 'ripple') {
-      createRipple(event, props.type === 'fill' ? '#ffffff55' : `${props.color}33`);
+      const color: `#${string}` | `var(--${string}` =
+        props.type === 'fill' ? '#ffffff' : `${getColor()}`;
+      createRipple(event, color);
     }
   };
 
@@ -73,6 +76,14 @@
   });
 
   const getStyle = computed((): CSSProperties => {
+    const colorStyle =
+      props.type === 'fill'
+        ? props.disabled
+          ? { backgroundColor: getDisabledColor() }
+          : { backgroundColor: getColor() }
+        : props.disabled
+        ? { borderColor: getDisabledColor(), color: getDisabledColor() }
+        : { borderColor: getColor(), color: getColor() };
     return {
       width: props.width,
       height: props.height,
@@ -80,12 +91,21 @@
       paddingBottom: props.padding ?? props.paddingBottom ?? '5px',
       paddingLeft: props.padding ?? props.paddingLeft ?? '20px',
       paddingRight: props.padding ?? props.paddingRight ?? '20px',
+      ...colorStyle,
     };
   });
 
-  const getDisabled = computed(() => {
-    return props.disabled;
-  });
+  const getColor = () => {
+    if (props.color === undefined) {
+      return colorMode.value === 'light' ? 'var(--primary600)' : 'var(--gray200)';
+    } else {
+      return props.color;
+    }
+  };
+
+  const getDisabledColor = () => {
+    return colorMode.value === 'light' ? 'var(--gray500)' : 'var(--gray400)';
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -96,40 +116,50 @@
     border-radius: 100vh;
     font-weight: 400;
     font-size: var(--font-size-md);
-    transition: color 0.2s, background-color 0.2s;
+    transition: color 0.2s, background-color 0.2s, opacity 0.2s;
 
     &.disabled {
       pointer-events: none;
     }
 
     &.fill {
-      background-color: v-bind(color);
-      color: var(--white);
+      color: var(--gray50);
 
       @include hover() {
-        background-color: v-bind(hoverColor);
+        opacity: 0.8;
       }
+      .dark-mode & {
+        color: var(--gray950);
+      }
+
       &.disabled-style {
-        background-color: var(--gray4);
+        opacity: 0.3;
       }
     }
 
     &.outline {
-      border: 1px v-bind(color) solid;
-      background-color: var(--white);
-      color: v-bind(color);
+      border: 1px solid;
+      background-color: var(--gray50);
 
       @include hover() {
-        border: 1px v-bind(hoverColor) solid;
-        color: v-bind(hoverColor);
+        background-color: var(--gray100);
         font-weight: 500;
+        .dark-mode & {
+          background-color: var(--gray600);
+        }
+      }
+
+      .dark-mode & {
+        background-color: var(--gray700);
       }
 
       &.disabled-style {
-        border: 1px var(--gray3) solid;
-        background-color: var(--white);
-        color: var(--gray5);
+        background-color: var(--gray50);
         font-weight: 400;
+        opacity: 0.3;
+        .dark-mode & {
+          background-color: var(--gray800);
+        }
       }
     }
 
@@ -151,7 +181,7 @@
 
     &.flat {
       &:active {
-        background-color: var(--color13);
+        background-color: var(--primary900);
       }
     }
     &.ripple {

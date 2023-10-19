@@ -25,7 +25,7 @@
     max-width: 360px;
     width: 100%;
     border-radius: 10px;
-    background-color: var(--white);
+    background-color: var(--gray50);
 
     @include responsive(xs) {
     }
@@ -44,6 +44,9 @@
       max-width: 1200px;
     }
     @include responsive(xxl) {
+    }
+    .dark-mode & {
+      background-color: var(--gray800);
     }
   }
 </style>

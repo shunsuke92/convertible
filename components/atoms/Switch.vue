@@ -107,7 +107,7 @@
   }
 
   .text {
-    color: var(--gray8);
+    color: var(--gray600);
     font-weight: 400;
     font-size: var(--font-size-sm);
     cursor: pointer;
@@ -117,6 +117,10 @@
     &.right {
       padding-left: 10px;
     }
+
+    .dark-mode & {
+      color: var(--gray300);
+    }
   }
 
   .button {
@@ -124,8 +128,11 @@
     width: 40px;
     height: 21px;
     border-radius: 50px;
-    background-color: var(--gray3);
+    background-color: var(--gray400);
     transition: background-color 0.18s;
+    .dark-mode & {
+      background-color: var(--gray500);
+    }
     &::before {
       position: absolute;
       top: 3px;
@@ -133,24 +140,33 @@
       width: 15px;
       height: 15px;
       border-radius: 20px;
-      background-color: var(--white);
+      background-color: var(--gray50);
       content: '';
       transition: left 0.18s;
     }
     &.on {
-      background-color: var(--color5);
+      background-color: var(--primary700);
+      .dark-mode & {
+        background-color: var(--primary600);
+      }
       &::before {
         left: 22px;
       }
     }
 
     .disabled & {
-      background-color: var(--gray2);
+      background-color: var(--gray300);
+      .dark-mode & {
+        background-color: var(--gray600);
+      }
       &::before {
-        background-color: var(--gray0);
+        background-color: var(--gray200);
+        .dark-mode & {
+          background-color: var(--gray500);
+        }
       }
       &.on {
-        background-color: var(--color12);
+        background-color: var(--primary900);
       }
     }
   }

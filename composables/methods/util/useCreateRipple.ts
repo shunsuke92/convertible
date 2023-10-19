@@ -1,6 +1,6 @@
 export const useCreateRipple = () => {
   // eslint-disable-next-line
-  const createRipple = (event: any, color: `#${string}`) => {
+  const createRipple = (event: any, color: `#${string}` | `var(--${string}`) => {
     const button = event.currentTarget;
 
     const clientRect = button?.getBoundingClientRect();
@@ -34,6 +34,7 @@ export const useCreateRipple = () => {
     ripple.style.position = 'absolute';
     ripple.style.borderRadius = '50%';
     ripple.style.background = color;
+    ripple.style.opacity = '0.4';
     ripple.style.transform = 'scale(0)';
     ripple.style.animation = `ripple ${time / 1000}s linear`;
     ripple.style.pointerEvents = 'none';

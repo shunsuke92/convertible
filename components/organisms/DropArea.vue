@@ -20,10 +20,16 @@
         :class="{ hide: isUploaded }"
       />
       <Stack direction="column" alignItems="center">
-        <Typography color="gray10" font-size="lg" :font-weight="400"
-          >アップロードする画像ファイルをドラッグ＆ドロップします。</Typography
+        <Typography
+          :color="$colorMode.value === 'light' ? 'gray600' : 'gray200'"
+          font-size="lg"
+          :font-weight="400"
+          >ドラッグ＆ドロップで画像ファイルを追加する。</Typography
         >
-        <Typography color="gray10" font-size="sm" :font-weight="300"
+        <Typography
+          :color="$colorMode.value === 'light' ? 'gray600' : 'gray200'"
+          font-size="sm"
+          :font-weight="300"
           >対応ファイル：JPEG / PNG / GIF / WebP / AVIF</Typography
         >
       </Stack>
@@ -122,17 +128,25 @@
     margin-bottom: 20px;
     padding: 120px 20px;
     width: 100%;
-    border: 3px var(--color5) solid;
+    border: 3px var(--primary700) solid;
     border-radius: 8px;
-    background-color: var(--color3);
+    background-color: var(--primary100);
     transition: padding 0.5s, background-color 0.2s;
 
     &.enter {
-      background-color: var(--color4);
+      background-color: var(--primary200);
+      .dark-mode & {
+        background-color: var(--gray600);
+      }
     }
     &.small {
       padding-top: 60px;
       padding-bottom: 60px;
+    }
+
+    .dark-mode & {
+      border-color: var(--gray500);
+      background-color: var(--gray700);
     }
   }
 

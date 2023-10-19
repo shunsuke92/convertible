@@ -11,6 +11,9 @@
 <style lang="scss" scoped>
   .icon {
     width: 20px;
-    fill: var(--white);
+    fill: var(--gray50);
+    .dark-mode & {
+      fill: var(--gray600);
+    }
   }
 </style>

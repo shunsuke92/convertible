@@ -149,13 +149,13 @@
     font-size: var(--font-size-xs);
     pointer-events: none;
     &.before {
-      border: 1px var(--color5) solid;
-      background-color: var(--white);
-      color: var(--color5);
+      border: 1px var(--primary700) solid;
+      background-color: var(--gray50);
+      color: var(--primary700);
     }
     &.after {
-      background-color: var(--color5);
-      color: var(--white);
+      background-color: var(--primary700);
+      color: var(--gray50);
     }
   }
 
@@ -179,11 +179,17 @@
     }
     .text {
       margin-left: 8px;
-      color: var(--gray8);
+      color: var(--gray700);
       font-weight: 400;
       &.change {
-        color: var(--color5);
+        color: var(--primary700);
         font-weight: 500;
+        .dark-mode & {
+          color: var(--primary400);
+        }
+      }
+      .dark-mode & {
+        color: var(--gray200);
       }
     }
   }
@@ -202,16 +208,25 @@
 
   .format-icon {
     width: 13px;
-    fill: var(--color5);
+    fill: var(--primary700);
+    .dark-mode & {
+      fill: var(--gray200);
+    }
   }
 
   .size-icon {
     width: 18px;
-    fill: var(--color5);
+    fill: var(--primary700);
+    .dark-mode & {
+      fill: var(--gray200);
+    }
   }
 
   .capacity-icon {
     width: 17px;
-    fill: var(--color5);
+    fill: var(--primary700);
+    .dark-mode & {
+      fill: var(--gray200);
+    }
   }
 </style>

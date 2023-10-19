@@ -37,6 +37,10 @@
     z-index: 500;
     width: 100vw;
     height: 100vh;
-    background-color: var(--color14);
+    background-color: #ffffff;
+    opacity: 0.5;
+    .dark-mode & {
+      background-color: var(--gray500);
+    }
   }
 </style>

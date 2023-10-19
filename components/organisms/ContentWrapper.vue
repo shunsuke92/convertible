@@ -57,9 +57,13 @@
     margin-bottom: 20px;
     padding: 10px 10px 10px 10px;
     width: 100%;
-    border: 2px var(--color5) solid;
+    border: 2px var(--primary700) solid;
     border-radius: 8px;
-    background-color: var(--color2);
+    background-color: var(--primary50);
     transition: height 0.5s ease;
+    .dark-mode & {
+      border-color: var(--gray500);
+      background-color: var(--gray700);
+    }
   }
 </style>

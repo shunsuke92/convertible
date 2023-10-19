@@ -23,7 +23,10 @@
     border-radius: 5px;
 
     @include hover() {
-      background-color: var(--color2);
+      background-color: var(--primary100);
+      .dark-mode & {
+        background-color: var(--gray500);
+      }
     }
   }
 </style>

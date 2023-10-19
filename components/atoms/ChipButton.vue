@@ -99,38 +99,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px var(--color9) solid;
-    background-color: var(--color7);
-    color: var(--color11);
+    border: 1px var(--primary600) solid;
+    background-color: var(--gray50);
+    color: var(--primary600);
     font-weight: 500;
     font-size: var(--font-size-sm);
     transition: all 0.2s;
 
     @include hover() {
-      border-color: var(--color10);
-      background-color: var(--color8);
-      &.selected {
-        border-color: var(--color6);
-        background-color: var(--color6);
+      border-color: var(--primary700);
+      background-color: var(--primary100);
+      color: var(--primary700);
+      .dark-mode & {
+        border-color: var(--gray300);
+        background-color: var(--gray700);
+        color: var(--gray300);
       }
-      &.disabled {
-        border-color: var(--gray3);
-        background-color: var(--white);
-        color: var(--gray3);
-      }
+    }
+
+    .dark-mode & {
+      border-color: var(--gray300);
+      background-color: var(--gray800);
+      color: var(--gray300);
     }
 
     &.selected {
-      border-color: var(--color5);
-      background-color: var(--color5);
-      color: var(--white);
+      border-color: var(--primary700);
+      background-color: var(--primary700);
+      color: var(--gray50);
+      .dark-mode & {
+        border-color: var(--gray300);
+        background-color: var(--gray300);
+        color: var(--gray800);
+      }
     }
 
     &.disabled {
-      border-color: var(--gray3);
-      background-color: var(--white);
-      color: var(--gray3);
+      border-color: var(--gray400);
+      background-color: var(--gray50);
+      color: var(--gray400);
       pointer-events: none;
+      .dark-mode & {
+        border-color: var(--gray600);
+        background-color: var(--gray800);
+        color: var(--gray600);
+      }
     }
   }
 </style>

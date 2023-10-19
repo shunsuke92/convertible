@@ -21,5 +21,8 @@
   .icon {
     width: 16px;
     height: 16px;
+    circle {
+      fill: var(--primary600);
+    }
   }
 </style>

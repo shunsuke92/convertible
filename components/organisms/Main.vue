@@ -15,6 +15,9 @@
     flex-direction: column;
     justify-content: flex-start;
     height: 100vh;
-    background-color: var(--color1);
+    background-color: var(--primary700);
+    .dark-mode & {
+      background-color: var(--gray900);
+    }
   }
 </style>

@@ -17,7 +17,7 @@
     padding: 7px 10px;
     width: 298px;
     border-radius: 8px;
-    background-color: var(--white);
+    background-color: #ffffff;
 
     @include responsive(xs) {
     }
@@ -39,6 +39,10 @@
     @include responsive(xl) {
     }
     @include responsive(xxl) {
+    }
+
+    .dark-mode & {
+      background-color: var(--gray600);
     }
   }
 </style>

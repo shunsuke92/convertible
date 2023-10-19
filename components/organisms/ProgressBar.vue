@@ -35,7 +35,10 @@
     top: -2px;
     left: 0;
     height: 2px;
-    background-color: var(--color5);
+    background-color: var(--primary700);
+    .dark-mode & {
+      background-color: var(--primary500);
+    }
   }
 
   .converting {

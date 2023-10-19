@@ -15,9 +15,18 @@
         gradientTransform="matrix(1, 0, 0, 1, 0, 0)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#f0f2fa" />
-        <stop offset=".63" stop-color="#95ca9f" />
-        <stop offset="1" stop-color="#64b56e" />
+        <stop
+          offset="0"
+          :stop-color="$colorMode.value === 'light' ? 'var(--primary50)' : '#4b5563'"
+        />
+        <stop
+          offset=".63"
+          :stop-color="$colorMode.value === 'light' ? 'var(--primary500)' : '#9ca3af'"
+        />
+        <stop
+          offset="1"
+          :stop-color="$colorMode.value === 'light' ? 'var(--primary600)' : '#d1d5db'"
+        />
       </linearGradient>
     </defs>
     <path

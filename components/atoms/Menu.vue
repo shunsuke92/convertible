@@ -48,8 +48,12 @@
   .menu {
     z-index: 1000;
     border-radius: 10px;
-    background-color: var(--white);
+    background-color: var(--gray50);
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.3);
+
+    .dark-mode & {
+      background-color: var(--gray800);
+    }
   }
 
   .fade-mask-enter-active,

@@ -12,7 +12,7 @@
 
   const props = withDefaults(defineProps<Props>(), {
     fontSize: 'md',
-    color: 'black',
+    color: 'gray950',
     fontWeight: 300,
   });
 

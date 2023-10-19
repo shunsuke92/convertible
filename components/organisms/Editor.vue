@@ -3,10 +3,10 @@
     v-if="windowWidth >= 768"
     :on="isOpenEditor"
     position="fixed"
-    top="max(calc((100vh - 740px) / 2), calc((100vh - 90%) / 2))"
+    top="max(calc((100vh - 750px) / 2), calc((100vh - 90%) / 2))"
     left="calc((100vw - 700px) / 2)"
     width="700px"
-    height="740px"
+    height="750px"
     :cs="{ maxHeight: '90%' }"
     @close="handleClose"
   >

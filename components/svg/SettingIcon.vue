@@ -32,6 +32,9 @@
 <style lang="scss" scoped>
   .setting-icon {
     width: 28px;
-    fill: var(--color5);
+    fill: var(--primary600);
+    .dark-mode & {
+      fill: var(--gray300);
+    }
   }
 </style>

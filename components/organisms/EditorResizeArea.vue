@@ -136,7 +136,13 @@
         id="color"
         class="input-color"
         type="color"
-        :value="!data.isAutoAspectRatio ? props.data.background : '#ffffff'"
+        :value="
+          !data.isAutoAspectRatio
+            ? props.data.background
+            : $colorMode.value === 'light'
+            ? '#ffffff'
+            : '#000000'
+        "
         @change="changeColor"
         :disabled="data.isAutoAspectRatio"
       />
@@ -311,17 +317,28 @@
     padding: 3px 6px;
     width: 80px;
     height: 28px;
-    border: 1px var(--gray5) solid;
+    border: 1px var(--gray400) solid;
     border-radius: 4px;
-    color: var(--gray9);
+    color: var(--gray600);
     font-weight: 400;
     transition: border 0.2s;
 
     @include hover() {
-      border: 1px var(--gray10) solid;
+      border-color: var(--gray600);
+      .dark-mode & {
+        border-color: var(--gray200);
+      }
+    }
+
+    .dark-mode & {
+      border-color: var(--gray300);
+      color: var(--gray300);
     }
     &:focus {
-      border: 2px var(--color9) solid;
+      border: 2px var(--primary600) solid;
+      .dark-mode & {
+        border: 2px var(--gray200) solid;
+      }
     }
   }
 
@@ -329,39 +346,59 @@
     padding: 2px 4px;
     width: 140px;
     height: 40px;
-    border: 1px var(--gray5) solid;
+    border: 1px var(--gray400) solid;
     border-radius: 4px;
+    cursor: pointer;
     transition: border 0.2s;
 
     @include hover() {
-      border: 1px var(--gray10) solid;
+      border: 1px var(--gray600) solid;
+    }
+    .dark-mode & {
+      border-color: var(--gray300);
     }
     &:focus {
-      border: 1px var(--gray10) solid;
+      border: 1px var(--gray600) solid;
+      .dark-mode & {
+        border-color: var(--gray200);
+      }
     }
     &:disabled {
-      border: 1px var(--gray3) solid;
+      border: 1px var(--gray400) solid;
+      cursor: auto;
+      .dark-mode & {
+        border-color: var(--gray600);
+      }
     }
   }
 
   .multiplication {
     margin-top: 26px;
-    color: var(--gray8);
+    color: var(--gray500);
     font-weight: 500;
+    .dark-mode & {
+      color: var(--gray300);
+    }
   }
 
   .attention {
     margin-bottom: 4px;
-    color: var(--red);
+    color: var(--red500);
     font-size: var(--font-size-xs);
   }
 
   .arrow-icon {
     .selected & {
-      fill: var(--white);
+      fill: var(--gray50);
+      .dark-mode & {
+        fill: var(--gray800);
+      }
     }
     .disabled & {
-      fill: var(--gray3);
+      fill: var(--gray400);
+      .dark-mode & {
+        fill: var(--gray600);
+      }
     }
   }
 </style>

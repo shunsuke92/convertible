@@ -35,17 +35,28 @@
     display: inline;
     padding: 6px 12px;
     border-radius: 4px;
-    background-color: var(--color5);
-    color: var(--white);
+    background-color: var(--primary700);
+    color: var(--gray50);
     font-size: var(--font-size-md);
     cursor: pointer;
     transition: background-color 0.18s;
 
     @include hover() {
-      background-color: var(--color6);
+      background-color: var(--primary800);
+      .dark-mode & {
+        background-color: var(--gray400);
+      }
     }
     &:active {
-      background-color: var(--color13);
+      background-color: var(--primary900);
+      .dark-mode & {
+        background-color: var(--gray500);
+      }
+    }
+
+    .dark-mode & {
+      background-color: var(--gray300);
+      color: var(--gray950);
     }
   }
 

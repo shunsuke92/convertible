@@ -38,7 +38,11 @@
     justify-content: center;
     width: 100%;
     height: 90px;
-    background-color: var(--color1);
+    background-color: var(--primary700);
+
+    .dark-mode & {
+      background-color: var(--gray900);
+    }
     &.top {
       top: 0;
       align-items: flex-end;
@@ -57,9 +61,7 @@
     padding: 0 20px;
     width: 360px;
     height: 70px;
-    /* border-top: 2px var(--gray0) solid; */
-    /* border-radius: 0 0 10px 10px; */
-    background-color: var(--white);
+    background-color: var(--gray50);
 
     @include responsive(xs) {
     }
@@ -78,15 +80,25 @@
     }
     @include responsive(xxl) {
     }
+    .dark-mode & {
+      background-color: var(--gray800);
+    }
 
     .top & {
-      border-bottom: 2px var(--gray0) solid;
+      border-bottom: 2px var(--gray200) solid;
       border-radius: 10px 10px 0 0;
+
+      .dark-mode & {
+        border-color: var(--gray900);
+      }
     }
 
     .bottom & {
-      border-top: 2px var(--gray0) solid;
+      border-top: 2px var(--gray200) solid;
       border-radius: 0 0 10px 10px;
+      .dark-mode & {
+        border-color: var(--gray900);
+      }
     }
   }
 </style>

@@ -16,7 +16,7 @@
   .name {
     overflow: hidden;
     max-width: 300px;
-    color: var(--gray11);
+    color: var(--gray700);
     text-overflow: ellipsis;
     font-weight: 400;
     font-size: var(--font-size-lg);

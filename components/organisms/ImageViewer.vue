@@ -65,7 +65,7 @@
     width: v-bind(width);
     height: v-bind(height);
     border-radius: 8px;
-    background-color: var(--white);
+    background-color: var(--gray50);
     &.add-image-animation {
       animation: add-image 0.8s both;
 
@@ -92,6 +92,10 @@
         }
       }
     }
+
+    .dark-mode & {
+      background-color: var(--gray600);
+    }
   }
 
   .image-outer {
@@ -106,6 +110,9 @@
       width: inherit;
       height: inherit;
     }
+    &:disabled {
+      cursor: auto;
+    }
   }
 
   .icon {
@@ -113,6 +120,6 @@
     top: 6px;
     right: 6px;
     width: 16px;
-    fill: var(--white);
+    fill: var(--gray50);
   }
 </style>

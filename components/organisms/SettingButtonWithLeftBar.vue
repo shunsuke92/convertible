@@ -40,7 +40,7 @@
       left: -6px;
       width: 1px;
       height: 100%;
-      background-color: var(--color5);
+      background-color: var(--primary700);
       content: '';
 
       @include responsive(xs) {
@@ -55,6 +55,10 @@
       @include responsive(xl) {
       }
       @include responsive(xxl) {
+      }
+
+      .dark-mode & {
+        background-color: var(--gray300);
       }
     }
   }

@@ -50,9 +50,9 @@
     position: relative;
     padding: 30px 100px;
     width: 100%;
-    border: 2px var(--yellow2) solid;
+    border: 2px var(--yellow200) solid;
     border-radius: 10px;
-    background-color: var(--yellow1);
+    background-color: var(--yellow50);
   }
 
   .title {
@@ -63,19 +63,19 @@
     .icon {
       margin-right: 8px;
       width: 20px;
-      fill: var(--yellow3);
+      fill: var(--yellow400);
     }
   }
 
   .heading {
-    color: var(--gray8);
+    color: var(--gray500);
     font-weight: 400;
     font-size: var(--font-size-xl);
   }
 
   .text {
     margin-bottom: 10px;
-    color: var(--gray8);
+    color: var(--gray500);
     font-size: var(--font-size-lg);
     line-height: 2em;
   }
@@ -88,12 +88,12 @@
     height: 20px;
     .icon {
       width: 10px;
-      fill: var(--gray6);
+      fill: var(--gray400);
     }
   }
 
   .link {
-    color: var(--blue);
+    color: var(--blue500);
     text-decoration: none;
     font-weight: 500;
     font-size: var(--font-size-lg);

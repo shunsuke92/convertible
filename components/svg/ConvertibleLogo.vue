@@ -61,5 +61,18 @@
 <style lang="scss" scoped>
   .logo {
     display: block;
+
+    path {
+      fill: var(--gray950);
+      .dark-mode & {
+        fill: var(--gray200);
+      }
+    }
+    circle {
+      fill: var(--primary600);
+      .dark-mode & {
+        fill: var(--primary500);
+      }
+    }
   }
 </style>
