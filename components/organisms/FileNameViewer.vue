@@ -20,6 +20,9 @@
     text-overflow: ellipsis;
     font-weight: 400;
     font-size: var(--font-size-lg);
+    .dark-mode & {
+      color: var(--gray300);
+    }
 
     @include responsive(xs) {
     }
