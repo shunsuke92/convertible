@@ -21,6 +21,7 @@ export { useOpenImageList } from './methods/view/useOpenImageList';
 export { useSetFirstSettingToAll } from './methods/data/useSetFirstSettingToAll';
 export { useSetMatchMediaAddEventListener } from './methods/util/useSetMatchMediaAddEventListener';
 export { useSubmit } from './methods/util/useSubmit';
+export { useGetConversionNum } from './methods/util/useGetConversionNum';
 export { useUpdateInputFileWithSettingData } from './methods/data/useUpdateInputFileWithSettingData';
 
 export { useConvertingIndex } from './states/useConvertingIndex';

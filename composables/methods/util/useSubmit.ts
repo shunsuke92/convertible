@@ -1,5 +1,6 @@
 import { Format, FormatLevel, UpdataInputFiles } from '~/types/index';
 import axios from 'axios';
+import { useGetConversionNum } from './useGetConversionNum';
 
 export const useSubmit = () => {
   const { isBatchSetting } = useIsBatchSetting();
@@ -8,62 +9,42 @@ export const useSubmit = () => {
   const { errorMessage } = useErrorMessage();
   const { updateIsConvertingSingle } = useIsConvertingSingle();
   const { updateIsConvertingAll } = useIsConvertingAll();
-  const { updateIsCancelConversion } = useIsCancelConversion();
+  const { isCancelConversion, updateIsCancelConversion } = useIsCancelConversion();
   const { updateNumberOfScheduledConversions } = useNumberOfScheduledConversions();
   const { updateNumberOfCompletedConversions, increaseNumberOfCompletedConversions } =
     useNumberOfCompletedConversions();
   const { updateIsDisplayProgressBar } = useIsDisplayProgressBar();
   const { updateIsAlreadySubmit } = useIsAlreadySubmit();
   const { updateConvertingIndex } = useConvertingIndex();
-  const { isCancelConversion } = useIsCancelConversion();
   const { getFormat } = useGetFormat();
+  const { getConversionNum } = useGetConversionNum();
 
   const submit = async (index: number) => {
+    // index === 9999は一括変換
     if (isBatchSetting.value || index === 9999) {
-      // 変換ファイルと変換済みファイルの合計を計算
-      const fileNum = inputFiles.value.length;
-      let total = 0;
-      let done = 0;
-      for (let i = 0; i < fileNum; i++) {
-        // 変換ファイル
-        total += inputFiles.value[i].length;
-
-        // 変換済みファイル
-        for (const value of inputFiles.value[i]) {
-          if (value.outputFile) {
-            done++;
-          }
-        }
-      }
-
-      preProcess(total, done, 'all', index);
-
-      // 変換処理
+      preProcess('all', index);
       await submitAllFile();
-
       postProcess('all');
     } else {
-      // 変換ファイルの合計を計算
-      const total = inputFiles.value[index].length;
-
-      // 変換済みファイルの合計を計算
-      let done = 0;
-      for (const value of inputFiles.value[index]) {
-        if (value.outputFile) {
-          done++;
-        }
-      }
-
-      preProcess(total, done, 'single', index);
-
-      // 変換処理
+      preProcess('single', index);
       await submitSingleFile(index);
-
       postProcess('single');
     }
   };
 
-  const preProcess = (total: number, done: number, type: 'single' | 'all', index: number) => {
+  const preProcess = (type: 'single' | 'all', index: number) => {
+    let total;
+    let done;
+    if (type === 'all') {
+      const conversionNum = getConversionNum();
+      total = conversionNum.total;
+      done = conversionNum.done;
+    } else {
+      const conversionNum = getConversionNum(index);
+      total = conversionNum.total;
+      done = conversionNum.done;
+    }
+
     // 送信上限のチェック
     if (total > MAXIMUM_NUMBER_OF_SUBMIT.value) {
       errorMessage(10);

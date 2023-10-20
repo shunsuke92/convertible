@@ -47,6 +47,6 @@
 
   .done {
     opacity: 0;
-    transition: width 0.5s, opacity 3s 3s;
+    transition: width 0.5s, opacity 3s 6s;
   }
 </style>

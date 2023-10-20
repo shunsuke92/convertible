@@ -1,6 +1,6 @@
 <template>
   <Button type="outline" click-reaction="ripple" :disabled="getDisabled" @click="handleClick">{{
-    !getCancelButton ? '変換' : 'キャンセル'
+    !getConverting ? '変換' : !getCancelButton ? '変換中' : 'キャンセル'
   }}</Button>
 </template>
 
@@ -9,6 +9,7 @@
   const { updateIsCancelConversion } = useIsCancelConversion();
   const { submit } = useSubmit();
   const { convertingIndex } = useConvertingIndex();
+  const { getConversionNum } = useGetConversionNum();
 
   interface Props {
     fileIndex: number;
@@ -21,6 +22,12 @@
   });
 
   const getCancelButton = computed(() => {
+    const { total, done } = getConversionNum(props.fileIndex);
+    const conversionNum = total - done;
+    return conversionNum >= 2;
+  });
+
+  const getConverting = computed(() => {
     return props.fileIndex === convertingIndex.value;
   });
 

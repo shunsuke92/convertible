@@ -7,7 +7,7 @@
     :disabled="getDisabledAllSubmitButton"
     @click="handleClick"
   >
-    {{ !getCancelButton ? '一括変換' : 'キャンセル' }}
+    {{ !getConverting ? '一括変換' : !getCancelButton ? '変換中' : 'キャンセル' }}
   </Button>
 </template>
 
@@ -19,6 +19,7 @@
   const { inputFiles } = useInputFiles();
   const { isConverting } = useIsConverting();
   const { windowWidth } = useWindowWidth();
+  const { getConversionNum } = useGetConversionNum();
 
   const handleClick = () => {
     if (isConverting.value) {
@@ -29,6 +30,12 @@
   };
 
   const getCancelButton = computed(() => {
+    const { total, done } = getConversionNum();
+    const conversionNum = total - done;
+    return conversionNum >= 2;
+  });
+
+  const getConverting = computed(() => {
     return isConvertingAll.value;
   });
 
